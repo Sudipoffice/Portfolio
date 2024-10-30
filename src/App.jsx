@@ -25,8 +25,6 @@ function App() {
 
   return (
     <div className={`${isDark? "dark" : ""} `}>
-    {/* <p className='mx-[7%] left-0 w-[2px] h-[290vw] bg-gray-200 absolute z-0'></p> */}
-    <p className='mx-[7%] right-0 w-[2px] h-[290vw] bg-gray-200 dark:bg-gray-800 absolute z-0'></p>
     <CustomCursor/>
       <Navbar theme={[isDark, setIsDark]} />
       <div>

@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 
+
 @font-face {
     font-family: 'Extenda10';
     src: url('./assets/fonts/Extenda10.ttf') format('truetype');

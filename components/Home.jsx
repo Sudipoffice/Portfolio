@@ -45,22 +45,22 @@ const Home = () => {
         <div className=" flex flex-col justify-end items-center py-2 sm:py-4 md:py-4 lg:py-20 xl:py-44 gap-4 text-gray-600 dark:text-gray-500 text-sm sm:text-xl md:text-xl xl:text-2xl">
         <div className="bg-blue-700 h-20 sm:h-28 w-[3px] sm:w-1"></div>
           <a
-            className="bi bi-linkedin transition-transform duration-300 hover:scale-110 hover:text-blue-700 "
+            className="bi bi-linkedin transition-transform duration-300 hover:scale-110 hover:text-blue-700 z-10"
             href="https://www.linkedin.com/in/sudipmandal/"
             target="_blank"
           ></a>
           <a
-            className="bi bi-github transition-transform duration-300 hover:scale-110 hover:text-gray-900 dark:hover:text-gray-300"
+            className="bi bi-github transition-transform duration-300 hover:scale-110 hover:text-gray-900 dark:hover:text-gray-300 z-10"
             href="https://github.com/Sudipoffice"
             target="_blank"
           ></a>
           <a
-            className="bi bi-envelope-fill transition-transform duration-300 hover:scale-110 hover:text-yellow-400"
+            className="bi bi-envelope-fill transition-transform duration-300 hover:scale-110 hover:text-yellow-400 z-10"
             href="mailto:mandalsudipoffice@gmail.com"
             target="_blank"
           ></a>
           <a
-            className="bi bi-whatsapp transition-transform duration-300 hover:scale-110 hover:text-green-500"
+            className="bi bi-whatsapp transition-transform duration-300 hover:scale-110 hover:text-green-500 z-10"
             href="https://api.whatsapp.com/send?phone=7003071143"
             target="_blank"
           ></a>
