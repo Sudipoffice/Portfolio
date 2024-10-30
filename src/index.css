@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: 'Extenda10';
+    src: url('./assets/fonts/Extenda10.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Extenda20';
+    src: url('./assets/fonts/Extenda20.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Extenda30';
+    src: url('./assets/fonts/Extenda30.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Extenda40';
+    src: url('./assets/fonts/Extenda40.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Extenda50';
+    src: url('./assets/fonts/Extenda50.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Extenda80';
+    src: url('./assets/fonts/Extenda80.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+@font-face {
+    font-family: 'Extenda90';
+    src: url('./assets/fonts/Extenda90.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'cfMed';
+    src: url('./assets/fonts/cfMed.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'cfReg';
+    src: url('./assets/fonts/cfReg.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'klein';
+    src: url('./assets/fonts/klein.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+ 
+  .font-klein {
+    font-family: 'klein', sans-serif;
+  }
+  .font-extenda10 {
+    font-family: 'Extenda10', sans-serif;
+  }
+  .font-extenda20 {
+    font-family: 'Extenda20', sans-serif;
+  }
+.font-extenda30 {
+    font-family: 'Extenda30', sans-serif;
+  }
+.font-extenda40 {
+    font-family: 'Extenda40', sans-serif;
+  }
+  .font-extenda50 {
+    font-family: 'Extenda50', sans-serif;
+  }
+.font-extenda80 {
+    font-family: 'Extenda80', sans-serif;
+  }
+  .font-extenda90 {
+    font-family: 'Extenda90', sans-serif;
+  }
+  .font-klein {
+    font-family: 'cfMed', sans-serif;
+  }
+  .font-klein {
+    font-family: 'cfReg', sans-serif;
+  }
