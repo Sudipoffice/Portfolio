@@ -12,7 +12,7 @@ const Projects = () => {
         <a href="https://countries-tour.netlify.app/" target="_blank" className=" m-1 flex justify-end items-end hover:opacity-80">
           <img
             className=" h-32 sm:h-44 md:h-56 lg:h-80 xl:h-80 w-full object-cover relative"
-            src="../src/assets/images/countries-app.webp"
+            src="https://sudipoffice.github.io/portfolioImages/images/countries-app.webp"
             alt=""
           />
           <div>
@@ -24,7 +24,7 @@ const Projects = () => {
         <a href="https://sudipoffice.github.io/Taskify/" target="_blank" className=" m-1 flex justify-end items-end hover:opacity-80">
           <img
             className=" h-32 sm:h-44 md:h-56 lg:h-80 xl:h-80  w-full object-cover relative"
-            src="../src/assets/images/taskify.webp"
+            src="https://sudipoffice.github.io/portfolioImages/images/taskify.webp"
             alt=""
           />
           <p  className="bi bi-box-arrow-up-right absolute p-4 cursor-pointer duration-500 hover:scale-125"></p>
@@ -33,7 +33,7 @@ const Projects = () => {
         <a href="https://sudipoffice.github.io/Weather/" target="_blank" className=" m-1 flex justify-end items-end hover:opacity-80">
           <img
             className=" h-32 sm:h-44 md:h-56 lg:h-80 xl:h-80  w-full object-cover relative"
-            src="../src/assets/images/weather-app.webp"
+            src="https://sudipoffice.github.io/portfolioImages/images/weather-app.webp"
             alt=""
           />
           <p className="bi bi-box-arrow-up-right absolute p-4 cursor-pointer duration-500 hover:scale-125"></p>
@@ -42,7 +42,7 @@ const Projects = () => {
         <a href="" target="_blank" className=" m-1 flex justify-end items-end hover:opacity-80">
           <img
             className=" h-32 sm:h-44 md:h-56 lg:h-80 xl:h-80  w-full object-cover relative"
-            src="../src/assets/images/calculator.webp"
+            src="https://sudipoffice.github.io/portfolioImages/images/calculator.webp"
             alt=""
           />
           <p className="bi bi-box-arrow-up-right absolute p-4 cursor-pointer duration-500 hover:scale-125"></p>

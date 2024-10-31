@@ -1,5 +1,4 @@
 import React from "react";
-import sudipBW from "../src/assets/images/sudipBW.webp";
 import Resume from "../src/assets/files/SudipMandalResume.pdf"
 
 const Home = () => {
@@ -37,7 +36,7 @@ const Home = () => {
       </div>
       <div className="flex flex-row justify-end sm:justify-evenly sm:pt-12 md:pt-12 lg:pt-0 xl:pt-0 w-5/6 sm:w-5/6 md:w-4/6 lg:w-5/6 xl:w-3/6 ">
         <img
-          src={sudipBW}
+          src="https://sudipoffice.github.io/portfolioImages/images/sudipBW.webp"
           alt=""
           className=" h-6/7  w-4/6 flex justify-end items-end  "
         />
