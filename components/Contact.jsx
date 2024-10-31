@@ -14,7 +14,7 @@ const Contact = () => {
           <div className="bg-[#f1f1f1] dark:bg-slate-300 flex flex-col-reverse rounded-br-3xl rounded-tl-3xl  p-2 sm:p-6 w-20 sm:w-28 md:w-36 lg:w-44 xl:w-60 h-28 sm:h-44 md:h-52 lg:h-60 xl:h-72 m-4 relative z-10">
             <div className="flex flex-col justify-end items-start h-3/5">
               <h1 className="text-xl sm:text-2xl md:text-3xl xl:text-3xl font-extenda50 text-blue-800">Phone</h1>
-              <p className="text-xs sm:text-sm md:text-sm xl:text-lg font-light">+91 7003071143</p>
+              <p className="text-xs sm:text-sm md:text-sm xl:text-lg ">+91 7003071143</p>
             </div>
             <div className="flex justify-end items-start h-2/5">
               <img

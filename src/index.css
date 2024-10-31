@@ -6,61 +6,61 @@
 
 @font-face {
     font-family: 'Extenda10';
-    src: url('./assets/fonts/Extenda10.woff2') format('truetype');
+    src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda10.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
 @font-face {
     font-family: 'Extenda20';
-    src: url('./assets/fonts/Extenda20.woff2') format('truetype');
+    src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda20.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
 @font-face {
     font-family: 'Extenda30';
-    src: url('./assets/fonts/Extenda30.woff2') format('truetype');
+    src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda30.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
 @font-face {
     font-family: 'Extenda40';
-    src: url('./assets/fonts/Extenda40.woff2') format('truetype');
+    src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda40.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: 'Extenda50';
-    src: url('./assets/fonts/Extenda50.woff2') format('truetype');
+    src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda50.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: 'Extenda80';
-    src: url('./assets/fonts/Extenda80.woff2') format('truetype');
+    src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda80.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
 @font-face {
     font-family: 'Extenda90';
-    src: url('./assets/fonts/Extenda90.woff2') format('truetype');
+    src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda90.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: 'cfMed';
-    src: url('./assets/fonts/cfMed.woff2') format('truetype');
+    src: url('https://sudipoffice.github.io/portfolioImages/fonts/cfMed.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: 'cfReg';
-    src: url('./assets/fonts/cfReg.woff2') format('truetype');
+    src: url('https://sudipoffice.github.io/portfolioImages/fonts/cfReg.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
     font-family: 'klein';
-    src: url('./assets/fonts/klein.woff2') format('truetype');
+    src: url('https://sudipoffice.github.io/portfolioImages/fonts/klein.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
   }
