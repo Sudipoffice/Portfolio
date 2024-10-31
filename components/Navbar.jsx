@@ -1,6 +1,6 @@
 import React from 'react'
-import logoLight from '../src/assets/images/logoLight.png'
-import logoDark from '../src/assets/images/logoDark.png'
+import logoLight from '../src/assets/images/logoLight.webp'
+import logoDark from '../src/assets/images/logoDark.webp'
 import DarkLightMode from './DarkLightMode'
 import { NavLink } from 'react-router-dom'
 

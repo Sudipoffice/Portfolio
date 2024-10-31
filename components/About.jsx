@@ -1,7 +1,7 @@
 import React from "react";
-import LPU from "../src/assets/images/LPU.png"
-import APS from "../src/assets/images/APS.png"
-import KPS from "../src/assets/images/KPS.png"
+import LPU from "../src/assets/images/LPU.webp"
+import APS from "../src/assets/images/APS.webp"
+import KPS from "../src/assets/images/KPS.webp"
 
 const About = () => {
   return (

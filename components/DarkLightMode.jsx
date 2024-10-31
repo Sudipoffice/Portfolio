@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import darksky from "../src/assets/images/nightsky.jpg"
-import lightsky from "../src/assets/images/daysky.jpg"
+import darksky from "../src/assets/images/nightsky.webp"
+import lightsky from "../src/assets/images/daysky.webp"
 
 const DarkLightMode = ({theme}) => {
   const [isDark, setIsDark] = theme

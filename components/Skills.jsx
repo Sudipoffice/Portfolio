@@ -10,7 +10,7 @@ const Skills = () => {
       </div>
       <div className="flex flex-row justify-center items-center mx-2 sm:mx-4 md:mx-12 lg:mx-16 xl:mx-20  flex-wrap">
         {skillNames.map((skillName, i) => {
-            const imagePath = `../src/assets/images/${skillName.toLowerCase().replace(" ")}.png`;
+            const imagePath = `../src/assets/images/${skillName.toLowerCase().replace(" ")}.webp`;
           return (
             <div key={i} className="flex flex-col border-none rounded-xl bg-[#5d5d5ddd] dark:bg-gray-700 hover:bg-blue-700 dark:hover:bg-blue-700 w-24 sm:w-28 md:w-40 h-24 sm:h-28 md:h-40 m-2 sm:m-4 md:m-8 text-xs sm:text-sm md:text-md lg:text-base justify-evenly items-center">
               <img className="w-12 justify-center items-center " src={imagePath} alt={`${skillName} image`}/>

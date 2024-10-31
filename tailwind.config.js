@@ -8,6 +8,9 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      lineHeight: {
+        'extra-tight': '0.73', // Example for tighter line height
+      },
       fontFamily: {
         extenda10: ['Extenda10', 'sans-serif'],
         extenda20: ['Extenda20', 'sans-serif'],
