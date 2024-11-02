@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import { useLocation } from 'react-router-dom'
 import Home from '../components/Home.jsx';
@@ -10,6 +10,7 @@ import Footer from '../components/Footer.jsx';
 import "./App.css"
 import CustomCursor from '../components/CustomCursor.jsx';
 import AdditionalSkills from '../components/AdditionalSkills.jsx';
+import Loading from "../components/Loading.jsx"
 
 function App() {
   const location = useLocation();
@@ -23,12 +24,35 @@ function App() {
     }
   }, [location]);
 
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [isFontLoaded, setIsFontLoaded] = useState(false);
+  useEffect(() => {
+    document.fonts.ready.then(() => {
+      setIsFontLoaded(true);
+    });
+  }, []);
+
+
+// useEffect(() => {
+//   const timeout = setTimeout(() => {
+//     setIsImageLoaded(true);
+//   }, 4000);
+
+//   return () => clearTimeout(timeout);
+// }, []);
+
+
+  
+  const isLoading = !(isImageLoaded && isFontLoaded)
+
   return (
     <div className={`${isDark? "dark" : ""} `}>
     <CustomCursor/>
+      { isLoading? <Loading imgLoad={[isImageLoaded, setIsImageLoaded]}/> :
+      <>
       <Navbar theme={[isDark, setIsDark]} />
       <div>
-        <section id='home'> <Home/> </section>
+        <section id='home'> <Home imgLoad={[isImageLoaded, setIsImageLoaded]}/> </section>
         <section id='about'> <About/> </section>
         <section id='skills'> <Skills/> </section>
         <section><AdditionalSkills/></section>
@@ -36,6 +60,8 @@ function App() {
         <section id='contact'> <Contact/> </section>
       </div>
       <Footer/>
+      </>
+     }
       
     </div>
   )

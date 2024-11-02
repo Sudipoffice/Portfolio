@@ -4,7 +4,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
   return (
   
-      <div className=' pt-4 pb-4 flex flex-row justify-center items-center w-screen bg-slate-300  dark:bg-slate-800 '>
+      <div loading="lazy" className=' pt-4 pb-4 flex flex-row justify-center items-center w-screen bg-slate-300  dark:bg-slate-800 '>
 
       
       <div className='bi bi-c-circle flex sm:w-2/5 md:w-4/6 lg:w-2/6 xl:w-2/6 justify-center items-center m-2 text-xs sm:text-xs md:text-sm text-gray-950 dark:text-gray-300 z-10'>

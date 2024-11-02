@@ -3,8 +3,10 @@ import React from "react";
 
 const Skills = () => {
   const skillNames = ["HTML", "CSS", "JavaScript", "ReactJS", "TailwindCSS", "Github"];
+  
+
   return (
-    <div to="skills" className=" pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 md:mb-0  lg:px-0 xl:px-48 h-fit  md:h-screen flex flex-col bg-white dark:bg-gray-900 ">
+    <div loading="lazy" to="skills" className=" pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 md:mb-0  lg:px-0 xl:px-48 h-fit  md:h-screen flex flex-col bg-white dark:bg-gray-900 ">
       <div className="flex justify-center text-5xl sm:text-6xl md:text-8xl font-extenda40 text-blue-700">
         {'{ SKILLS }'}
       </div>

@@ -3,7 +3,7 @@ import Resume from "../src/assets/files/SudipMandalResume.pdf";
 
 const Contact = () => {
   return (
-    <div to="projects" className=" px-20 flex flex-col pt-12 sm:pt-24 md:pt-24 lg:pt-28 xl:pt-28 bg-white dark:bg-gray-900">
+    <div loading="lazy" to="projects" className=" px-20 flex flex-col pt-12 sm:pt-24 md:pt-24 lg:pt-28 xl:pt-28 bg-white dark:bg-gray-900">
       <div className=" flex justify-center text-5xl sm:text-6xl md:text-8xl font-extenda40 text-blue-700">
         {" "}
         ` CONTACT `{" "}
