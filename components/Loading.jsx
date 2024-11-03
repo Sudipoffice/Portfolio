@@ -7,7 +7,6 @@ const Loading = ({imgLoad}) => {
   const handleImageLoad = () => {
     setIsImageLoaded(true);
   };
-  console.log("Loading img",isImageLoaded)
   return (
     
     <div className='flex justify-center items-center h-screen bg-blue-200'>
