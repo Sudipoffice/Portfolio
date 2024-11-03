@@ -8,9 +8,9 @@ const Contact = () => {
         {" "}
         ` CONTACT `{" "}
       </div>
-
       <div className="flex flex-row justify-center">
-        <div className="relative mx-0 sm:mx-4">
+      {/* Phone */}
+        <div className="relative mx-[-4px] sm:mx-4">
           <div className="bg-[#f1f1f1] dark:bg-slate-300 flex flex-col-reverse rounded-br-3xl rounded-tl-3xl  p-2 sm:p-6 w-20 sm:w-28 md:w-36 lg:w-44 xl:w-60 h-28 sm:h-44 md:h-52 lg:h-60 xl:h-72 m-4 relative z-10">
             <div className="flex flex-col justify-end items-start h-3/5">
               <h1 className="text-xl sm:text-2xl md:text-3xl xl:text-3xl font-extenda50 text-blue-800">Phone</h1>
@@ -24,10 +24,10 @@ const Contact = () => {
               />
             </div>
           </div>
-          <div className="bg-[#203b6096] dark:bg-[#417aca96] w-20 sm:w-28 md:w-36 lg:w-44 xl:w-60 h-28 sm:h-44 md:h-52 lg:h-60 xl:h-72 rounded-br-3xl rounded-tl-4xl absolute right-0 top-0 translate-x-0 translate-y-8 z-0"></div>
+          <div className="bg-[#203b6096] dark:bg-[#417aca96] w-[18vw] sm:w-28 md:w-36 lg:w-44 xl:w-60 h-[26vw] sm:h-44 md:h-52 lg:h-60 xl:h-72 rounded-br-3xl rounded-tl-4xl absolute right-0 top-0 translate-x-[-8px] sm:translate-x-0 translate-y-8 z-0"></div>
         </div>
-
-        <div className="relative mx-0 sm:mx-4 ">
+{/* Email */}
+        <div className="relative mx-[-4px] sm:mx-4 ">
           <div className="bg-[#f1f1f1] dark:bg-slate-300 flex flex-col-reverse sm:py-8 md:py-0 p-4 md:p-4 lg:p-2 xl:p-6 w-28 sm:w-48 md:w-60 lg:w-72 xl:w-96 h-28 sm:h-44 md:h-52 lg:h-60 xl:h-72  m-4 justify-between rounded-br-3xl rounded-tl-3xl relative z-10">
             <div className="flex flex-col p-1 justify-end items-center h-3/5">
               <h1 className="flex text-xl sm:text-2xl md:text-3xl xl:text-3xl font-extenda50 text-blue-800">Email</h1>
@@ -42,7 +42,7 @@ const Contact = () => {
           </div>
           <div className="bg-[#203b6096] dark:bg-[#417aca96] w-28 sm:w-48 md:w-60 lg:w-72 xl:w-96 h-28 sm:h-44 md:h-52 lg:h-60 xl:h-72 rounded-br-3xl rounded-tl-4xl absolute right-0 top-0 translate-x-0  translate-y-8 z-0"></div>
         </div>
-
+{/* Address */}
         <div className="relative mx-0 sm:mx-4 ">
           <div className="bg-[#f1f1f1] dark:bg-slate-300 flex flex-col-reverse p-2 sm:p-6 w-20 sm:w-28 md:w-36 lg:w-40 xl:w-56 h-28 sm:h-44 md:h-52 lg:h-60 xl:h-72 m-4 justify-center rounded-br-3xl rounded-tl-3xl relative z-10">
             <div className="flex flex-col justify-end items-start h-3/5">
@@ -59,7 +59,7 @@ const Contact = () => {
               />
             </div>
           </div>
-          <div className="bg-[#203b6096] dark:bg-[#417aca96] w-20 sm:w-28 md:w-36 lg:w-40 xl:w-56 h-28 sm:h-44 md:h-52 lg:h-60 xl:h-72 rounded-br-3xl rounded-tl-4xl absolute right-0 top-0 translate-x-0 translate-y-8 z-0"></div>
+          <div className="bg-[#203b6096] dark:bg-[#417aca96] w-[18vw] sm:w-28 md:w-36 lg:w-40 xl:w-56 h-[26vw] sm:h-44 md:h-52 lg:h-60 xl:h-72 rounded-br-3xl rounded-tl-4xl absolute right-0 top-0 translate-x-[-8px] sm:translate-x-0 translate-y-8 z-0"></div>
         </div>
       </div>
 
