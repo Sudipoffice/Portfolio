@@ -32,6 +32,16 @@ function App() {
     });
   }, []);
 
+
+useEffect(() => {
+  const timeout = setTimeout(() => {
+    setIsImageLoaded(true);
+  }, 1000);
+
+  return () => clearTimeout(timeout);
+}, []);
+
+
   
   const isLoading = !(isImageLoaded && isFontLoaded)
 
