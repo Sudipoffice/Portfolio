@@ -52,7 +52,7 @@ const Navbar = ({theme}) => {
 
   return (
     <>
-    <div>
+    <div className='w-screen'>
     {/* Desktop Nav */}
       <div
         className={`fixed w-screen z-50 ${
