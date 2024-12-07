@@ -7,6 +7,9 @@ export default {
   ],
   darkMode: 'class',
   theme: {
+    aspectRatio:{
+      '5/3' : '5/3',
+    },
     extend: {
       keyframes: {
         slideInLeft: {

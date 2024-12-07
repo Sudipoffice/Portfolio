@@ -16,12 +16,13 @@ const Home = ({ imgLoad}) => {
     <div onContextMenu={(e) => e.preventDefault()} className="flex flex-row justify-center sm:justify-evenly pt-0 sm:pt-12 md:pt-12 lg:pt-0 xl:pt-0 w-screen sm:w-5/6 md:w-4/6 lg:w-5/6 xl:w-3/6 animate-slideInRight ">
       {isImageLoaded ? (
         <img
-          src={"https://sudipoffice.github.io/portfolioImages/images/sudipBW.webp"}
+          src={"https://sudipoffice.github.io/portfolioImages/images/Portfolio/sudipBW.webp"}
           alt="Sudip Mandal"
           loading="eager"
           className="h-6/7 w-4/6 px-4  sm:px-0 flex justify-end items-end select-none  z-0"
           onLoad={handleImageLoad} 
         />
+        
       ) : (
         <></>
       )}
@@ -74,7 +75,7 @@ const Home = ({ imgLoad}) => {
             </p>
           </div>
         </div>
-        <div className="justify-center items-center text-center font-light text-sm sm:text-sm md:text-md lg:text-base w-5/6 sm:w-6/6 md:w-4/6 my-2 sm:my-8 text-black dark:text-gray-300">
+        <div className="justify-center items-center text-center font-light text-sm sm:text-sm md:text-base lg:text-xl w-5/6 sm:w-6/6 md:w-4/6 my-2 sm:my-8 text-black dark:text-gray-300">
           Nice to meet you. Welcome to my portfolio, Let’s connect and discuss how we can make an impact
           together!
         </div>

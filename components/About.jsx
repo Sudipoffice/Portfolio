@@ -31,7 +31,7 @@ const About = () => {
     <div loading="lazy" id="about" className="flex flex-col sm:flex-row pt-20 sm:pt-28 md:pt-36 px-1 sm:px-4 md:px-20 h-fit sm:h-screen bg-slate-200 dark:bg-gray-800">
       <div className="flex flex-col sm:w-3/6 md:w-3/5 ">
         <h1 className="text-5xl sm:text-6xl md:text-8xl font-extenda40 text-blue-700 z-10"> &lt; ABOUT &gt;</h1>
-        <div className={`my-2 sm:my-5 px-4 sm:px-0 text-xs sm:text-sm md:text-md lg:text-base font-light text-black dark:text-gray-300 z-10 ${isVisible ? 'animate-slideInLeft' : 'opacity-0'}`}>
+        <div className={`my-2 sm:my-5 px-4 sm:px-0 text-xs sm:text-sm md:text-lg lg:text-xl font-light text-black dark:text-gray-300 z-10 ${isVisible ? 'animate-slideInLeft' : 'opacity-0'}`}>
           I'm a passionate and detail-oriented Front-End Web Developer. With a
           solid foundation in HTML, CSS, JavaScript, and modern libraries like
           React, I specialize in creating seamless, responsive, and engaging
