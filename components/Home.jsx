@@ -10,7 +10,7 @@ const Home = ({ imgLoad}) => {
 
   return (
 
-    <div id="home" className="flex flex-col sm:flex-row-reverse justify-around  bg-white dark:bg-gray-900 font-display:swap pb-32 sm:pb-0 w-screen overflow-hidden" loading="eager" >
+    <div id="home" className="flex flex-col sm:flex-row-reverse justify-around  bg-white dark:bg-gray-900 font-display:swap pb-32 sm:pb-0 min-w-screen overflow-hidden" loading="eager" >
 
     {/* image part */}
     <div onContextMenu={(e) => e.preventDefault()} className="flex flex-row justify-center sm:justify-evenly pt-0 sm:pt-12 md:pt-12 lg:pt-0 xl:pt-0 w-screen sm:w-5/6 md:w-4/6 lg:w-5/6 xl:w-3/6 animate-slideInRight ">

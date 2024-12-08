@@ -32,7 +32,7 @@ const Projects = () => {
                 <a href="https://newsflash-web.netlify.app/" target="_blank" className=" m-1 flex justify-end items-end hover:opacity-80">
                       <div className="flex flex-row  w-auto h-auto aspect-5/3 rounded-lg transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                         {newsFlash.map((img,i)=> {
-                          return <div key={i} className="flex-shrink-0 aspect-5/3">
+                          return <div key={i} className="flex-shrink-0 aspect-5/3 h-fit w-fit">
                                     <img loading="lazy"
                                       className=" aspect-5/3 h-auto w-full object-cover relative"
                                         src={img}
@@ -56,14 +56,14 @@ const Projects = () => {
         {/* EasyEats-AI */}
 
         <div className="mx-2 md:mx-12">
-        <div class="relative  border-gray-800 dark:border-gray-700 bg-gray-800 border-[8px] md:border-[16px] rounded-t-2xl h-auto w-auto">
-            <div class="rounded-xl overflow-x-hidden h-auto w-auto  bg-white dark:bg-gray-600">
+        <div class="relative  border-gray-800 dark:border-gray-700 bg-gray-800 border-[8px] md:border-[16px] rounded-t-2xl aspect-5/3  h-fit w-fit">
+            <div class="rounded-xl overflow-hidden aspect-5/3 h-fit w-fit  bg-white dark:bg-gray-600">
             <a href="https://newsflash-web.netlify.app/" target="_blank" className=" m-1 flex justify-end items-end hover:opacity-80">
-                              <div className="flex flex-row  w-auto h-auto aspect-5/3 rounded-lg transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+                              <div className="flex flex-row  w-fit h-fit aspect-5/3 rounded-lg transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
                                 {easyEats.map((img,i)=> {
-                                  return <div key={i} className="flex-shrink-0 aspect-5/3">
+                                  return <div key={i} className="flex-shrink-0 h-fit w-fit aspect-5/3">
                                             <img loading="lazy"
-                                              className=" aspect-5/3 h-auto w-full object-cover relative"
+                                              className=" aspect-5/3 h-fit w-fit object-cover relative"
                                                 src={img}
                                               alt=""
                                                   />
