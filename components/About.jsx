@@ -171,8 +171,13 @@ const About = () => {
   return (
     <div
       id="about"
-      className="flex flex-col lg:flex-row pt-20 sm:pt-28 md:pt-36 px-4 sm:px-8 md:px-16 lg:px-20 min-h-screen bg-slate-200 dark:bg-gray-800 gap-8 lg:gap-12 pb-16"
+      className="relative pt-20 sm:pt-28 md:pt-36 px-4 sm:px-8 md:px-16 lg:px-20 min-h-screen bg-slate-200 dark:bg-gray-800 overflow-hidden"
     >
+      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/5 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-40 right-10 w-80 h-80 bg-cyan-500/5 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-purple-500/5 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 pb-16">
       {/* LEFT COLUMN: Bio Section */}
       <div className="flex flex-col lg:w-3/5 xl:w-3/5">
         <div ref={headerRef}>
@@ -290,6 +295,7 @@ const About = () => {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

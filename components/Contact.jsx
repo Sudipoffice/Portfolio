@@ -27,8 +27,9 @@ const contactCards = [
     href: "https://maps.google.com/?q=Kolkata,India",
     accent: "from-amber-500 to-orange-500",
     glow: "hover:shadow-[0_0_20px_rgba(245,158,11,0.3)] dark:hover:shadow-[0_0_20px_rgba(249,115,22,0.25)]",
+    filled: true,
     icon: (
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
     )
   }
 ];
@@ -40,9 +41,10 @@ const Contact = () => {
       className="relative pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 min-h-screen bg-white dark:bg-gray-900 overflow-hidden"
     >
       {/* Glow orbs */}
-      <div className="absolute top-40 left-10 w-64 h-64 bg-blue-500/5 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-40 left-10 w-72 h-72 bg-blue-500/5 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-60 right-10 w-80 h-80 bg-purple-500/5 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-40 left-1/3 w-72 h-72 bg-cyan-500/5 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-40 left-1/3 w-80 h-80 bg-cyan-500/5 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-pink-500/5 dark:bg-pink-400/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Heading */}
       <div className="relative flex justify-center text-5xl sm:text-6xl md:text-8xl font-extenda40 mb-10 sm:mb-14 bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">
@@ -63,8 +65,8 @@ const Contact = () => {
               className={`group flex flex-col backdrop-blur-md bg-white/50 dark:bg-gray-700/20 border border-white/20 dark:border-gray-600/10 rounded-3xl shadow-md transition-all duration-300 hover:-translate-y-1 ${card.glow}`}
             >
               <div className="flex flex-col items-center justify-center p-6 sm:p-8 lg:p-10 text-center">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-2xl bg-gray-100 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 mb-4 group-hover:scale-110 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-all duration-300 group-hover:shadow-[0_0_16px_rgba(59,130,246,0.2)]">
-                  <svg className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-2xl bg-gray-100 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 mb-4 group-hover:scale-110 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.25)] group-hover:bg-gray-50 dark:group-hover:bg-gray-600/50">
+                  <svg className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" {...(card.filled ? { fill: "currentColor" } : { fill: "none", stroke: "currentColor" })} viewBox="0 0 24 24">
                     {card.icon}
                   </svg>
                 </div>

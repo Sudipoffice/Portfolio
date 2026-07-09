@@ -3,12 +3,11 @@ const Footer = () => {
 
   return (
     <footer className="relative w-full bg-slate-300 dark:bg-slate-800 overflow-hidden">
-      {/* Animated gradient border */}
       <div className="h-[2px] w-full bg-gradient-to-r from-blue-500 via-purple-500 via-pink-500 to-cyan-500 bg-[length:200%_100%] animate-shimmer" />
 
-      {/* Subtle glow orbs */}
       <div className="absolute -top-20 -left-20 w-40 h-40 bg-blue-500/10 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-purple-500/10 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-60 h-60 bg-cyan-500/5 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16 py-6 sm:py-8">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">

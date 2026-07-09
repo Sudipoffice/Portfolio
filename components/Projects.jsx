@@ -15,13 +15,13 @@ const ProjectCard = ({ project, index, visible }) => {
 
   return (
     <div
-      className={`flex flex-col backdrop-blur-md bg-white/50 dark:bg-gray-700/20 border border-white/20 dark:border-gray-600/10 rounded-3xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-700 ${
+      className={`flex flex-col backdrop-blur-md bg-white/50 dark:bg-gray-700/20 border border-white/20 dark:border-gray-600/10 rounded-3xl overflow-hidden shadow-md transition-all duration-700 hover:shadow-xl hover:border-violet-300/30 dark:hover:border-violet-600/20 hover:-translate-y-1 ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
       style={{ transitionDelay: `${index * 200}ms` }}
     >
       {/* Accent bar */}
-      <div className={`h-1 w-full bg-gradient-to-r ${project.accent}`} />
+      <div className={`h-1 w-full bg-gradient-to-r bg-[length:200%_100%] animate-shimmer ${project.accent}`} />
 
       {/* Image */}
       <div className="relative h-48 sm:h-56 lg:h-60 overflow-hidden">
@@ -149,8 +149,12 @@ const Projects = () => {
   return (
     <div
       id="projects"
-      className="pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 min-h-screen bg-gray-200 dark:bg-gray-800 overflow-hidden"
+      className="relative pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 min-h-screen bg-gray-200 dark:bg-gray-800 overflow-hidden"
     >
+      <div className="absolute top-20 left-10 w-72 h-72 bg-violet-500/5 dark:bg-violet-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-40 right-10 w-80 h-80 bg-purple-500/5 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 right-1/3 w-64 h-64 bg-pink-500/5 dark:bg-pink-400/5 rounded-full blur-3xl pointer-events-none" />
+
       <div className="flex justify-end text-5xl sm:text-6xl md:text-8xl font-extenda40 bg-gradient-to-r from-violet-500 to-purple-400 bg-clip-text text-transparent px-6 sm:px-12 md:px-16 mb-8 sm:mb-12">
         [ PROJECTS ]
       </div>
