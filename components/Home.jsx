@@ -71,7 +71,7 @@ const Home = ({ imgLoad}) => {
               A
             </p>
             <p rel="preload" className="font-extenda90 text-gray-600 dark:text-gray-500 sm:text-gray-600 text-5xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl extraTight z-10">
-              WEB <br /> DEVELOPER
+              FULL STACK <br /> DEVELOPER
             </p>
           </div>
         </div>
