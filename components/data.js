@@ -78,6 +78,40 @@ export const skillsData = [
   }
 ]
 
+export const projectsData = [
+  {
+    id: 1,
+    title: "QA Tracker",
+    subtitle: "Project Management App",
+    description: [
+      "Full-stack project and QA task management platform with JWT/bcrypt authentication, protected routes, role-based access, and a RESTful API supporting pagination, search, filtering, sorting, and normalized MongoDB schemas with relational references.",
+      "Analytics dashboard with MongoDB aggregation-driven stats and task/priority distribution tracking, along with a reusable component architecture (modals, tables, badges, skeleton loaders) and a responsive, toast-enabled UI with persisted layout state."
+    ],
+    tech: ["React 19", "Vite", "Tailwind CSS 4", "Node.js", "Express 5", "MongoDB", "Mongoose", "JWT", "bcrypt"],
+    liveUrl: "https://qa-tracker.example.com",
+    githubUrl: "https://github.com/sudipmandal/qa-tracker",
+    accent: "from-blue-600 to-purple-600"
+  },
+  {
+    id: 2,
+    title: "NewsFlash",
+    subtitle: "Curated News Aggregation Platform",
+    description: [
+      "Responsive React SPA aggregating real-time news across 100+ global topics by integrating multiple third-party APIs (NYT, NewsAPI, WorldNewsAPI, YouTube API), with dedicated Trending, Local, Global, and Video sections for improved content discovery.",
+      "Implemented interactive 3D visual elements using Three.js (React Three Fiber, Drei) and scroll-driven animations with GSAP and react-scroll-parallax, while optimizing asset loading and 3D model rendering for faster page performance."
+    ],
+    tech: ["React 18", "React Router", "Three.js", "React Three Fiber", "GSAP", "Tailwind CSS", "Vite"],
+    liveUrl: "https://newsflash-web.netlify.app/",
+    images: [
+      "https://sudipoffice.github.io/portfolioImages/images/NewsFlash/Home.webp",
+      "https://sudipoffice.github.io/portfolioImages/images/NewsFlash/TopStories.webp",
+      "https://sudipoffice.github.io/portfolioImages/images/NewsFlash/Categories.webp",
+      "https://sudipoffice.github.io/portfolioImages/images/NewsFlash/Videos.webp"
+    ],
+    accent: "from-cyan-500 to-blue-600"
+  }
+]
+
 export const educationData = [
   {
     id: 1,
