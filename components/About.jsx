@@ -177,7 +177,7 @@ const About = () => {
       <div className="flex flex-col lg:w-3/5 xl:w-3/5">
         <div ref={headerRef}>
           <h1
-            className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extenda40 text-blue-700 transition-all duration-700 ${
+            className={`text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extenda40 bg-gradient-to-r from-sky-400 to-blue-500 bg-clip-text text-transparent transition-all duration-700 ${
               visible.header ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
             }`}
           >

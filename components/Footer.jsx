@@ -1,29 +1,32 @@
-import React from 'react'
-
 const Footer = () => {
   const year = new Date().getFullYear();
+
   return (
-  
-      <div loading="lazy" className=' pt-4 pb-4 flex flex-row justify-center items-center w-screen bg-slate-300  dark:bg-slate-800 '>
+    <footer className="relative w-full bg-slate-300 dark:bg-slate-800 overflow-hidden">
+      {/* Animated gradient border */}
+      <div className="h-[2px] w-full bg-gradient-to-r from-blue-500 via-purple-500 via-pink-500 to-cyan-500 bg-[length:200%_100%] animate-shimmer" />
 
-      
-      <div className='bi bi-c-circle flex sm:w-2/5 md:w-4/6 lg:w-2/6 xl:w-2/6 justify-center items-center m-2 text-xs sm:text-xs md:text-sm text-gray-950 dark:text-gray-300 z-10'>
-        &nbsp;{year}&nbsp; <p className=''>All rights reserved.</p> 
+      {/* Subtle glow orbs */}
+      <div className="absolute -top-20 -left-20 w-40 h-40 bg-blue-500/10 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-purple-500/10 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16 py-6 sm:py-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 order-3 sm:order-1">
+            &copy; {year}{" "}
+            <span className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent font-semibold">
+              Sudip Mandal
+            </span>
+            . All rights reserved.
+          </p>
+
+          <p className="text-[10px] sm:text-xs order-1 sm:order-3 tracking-wider uppercase font-semibold bg-gradient-to-r from-cyan-400 via-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            Designed &amp; Built by Sudip Mandal
+          </p>
+        </div>
       </div>
+    </footer>
+  );
+};
 
-
-           <p className='bg-blue-700 dark:bg-blue-600 mr-2 h-1 w-4/6'></p>
-
-           <div className='flex w-1/7 justify-center items-center my-2 md:mx-10 lg:mx-20'>
-           <a href='https://www.linkedin.com/in/sudipmandal/' target="_blank" className='bi bi-linkedin mx-1 sm:mx-4 sm:text-lg md:text-2xl text-gray-700 dark:text-gray-400 hover:text-blue-700 dark:hover:text-blue-700'></a>
-           <a href='https://github.com/Sudipoffice' target="_blank" className='bi bi-github mx-1 sm:mx-4 sm:text-lg md:text-2xl text-gray-700 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'></a>
-           <a href="https://api.whatsapp.com/send?phone=7003071143" target="_blank" className='bi bi-whatsapp mx-1 sm:mx-4 sm:text-lg md:text-2xl text-gray-700 dark:text-gray-400 hover:text-green-500 dark:hover:text-green-500'></a>
-           </div>
-
-          
-      </div>
-
-  )
-}
-
-export default Footer
+export default Footer;

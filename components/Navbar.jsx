@@ -17,11 +17,11 @@ const Navbar = ({theme}) => {
 
   //nav option object
   const navLinks = [
-    { path: '/', label: 'Home', activeLabel: '( Home )' },
-    { path: '/about', label: 'About', activeLabel: '< About >' },
-    { path: '/skills', label: 'Skills', activeLabel: '{ Skills }' },
-    { path: '/projects', label: 'Projects', activeLabel: '[ Projects ]' },
-    { path: '/contact', label: 'Contact', activeLabel: '` Contact `' },
+    { path: '/', label: 'Home', activeLabel: '( Home )', color: 'text-blue-700 dark:text-blue-600' },
+    { path: '/about', label: 'About', activeLabel: '< About >', color: 'text-sky-500' },
+    { path: '/skills', label: 'Skills', activeLabel: '{ Skills }', color: 'text-emerald-500' },
+    { path: '/projects', label: 'Projects', activeLabel: '[ Projects ]', color: 'text-violet-500' },
+    { path: '/contact', label: 'Contact', activeLabel: '` Contact `', color: 'text-purple-500' },
   ];
   useEffect(() => {
     if (isMenuOpen) {
@@ -63,13 +63,13 @@ const Navbar = ({theme}) => {
           <img src={isDark ? logoDark : logoLight} alt="Logo" className="w-8 sm:w-16" />
         </div>
     
-        <nav className={`flex text-xs sm:text-sm md:text-md lg:text-base font-light z-20 ${isDark ? 'text-gray-300' : 'text-black'}`}>
-          {navLinks.map(({ path, label, activeLabel }) => (
+         <nav className={`flex text-xs sm:text-sm md:text-md lg:text-base font-light z-20 ${isDark ? 'text-gray-300' : 'text-black'}`}>
+          {navLinks.map(({ path, label, activeLabel, color }) => (
             <NavLink
               key={path}
               to={path}
               className={({ isActive }) =>
-                `${isActive ? 'text-blue-700 dark:text-blue-600 font-bold' : ''} mx-1 sm:mx-2 md:mx-6`
+                `${isActive ? `${color} font-bold` : ''} mx-1 sm:mx-2 md:mx-6`
               }
             >
               {({ isActive }) => (isActive ? activeLabel : label)}
@@ -112,12 +112,12 @@ const Navbar = ({theme}) => {
 
     { isMenuOpen?  
         <nav className={`flex sm:hidden flex-col fixed  w-screen h-screen p-8  mt-8 text-md  z-20 ${isMenuOpen? 'bg-indigo-100 dark:bg-[#0e193c] transition-2s'  : 'bg-[#ffffff00]' } ${isDark ? 'text-gray-300' : 'text-black'}`}>
-          {navLinks.map(({ path, label, activeLabel }) => (
+          {navLinks.map(({ path, label, activeLabel, color }) => (
             <NavLink
               key={path}
               to={path}
               className={({ isActive }) =>
-                `${isActive ? 'text-blue-700 dark:text-blue-600 font-bold' : ''} my-4`
+                `${isActive ? `${color} font-bold` : ''} my-4`
               }
               onClick={() => setIsMenuOpen(false)}
             >

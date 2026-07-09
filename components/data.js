@@ -88,7 +88,7 @@ export const projectsData = [
       "Analytics dashboard with MongoDB aggregation-driven stats and task/priority distribution tracking, along with a reusable component architecture (modals, tables, badges, skeleton loaders) and a responsive, toast-enabled UI with persisted layout state."
     ],
     tech: ["React 19", "Vite", "Tailwind CSS 4", "Node.js", "Express 5", "MongoDB", "Mongoose", "JWT", "bcrypt"],
-    liveUrl: "https://qa-tracker.example.com",
+    liveUrl: "https://qa-taskmanager.netlify.app/",
     githubUrl: "https://github.com/sudipmandal/qa-tracker",
     accent: "from-blue-600 to-purple-600"
   },
@@ -109,6 +109,24 @@ export const projectsData = [
       "https://sudipoffice.github.io/portfolioImages/images/NewsFlash/Videos.webp"
     ],
     accent: "from-cyan-500 to-blue-600"
+  },
+  {
+    id: 3,
+    title: "EasyEats AI",
+    subtitle: "AI-Powered Recipe Discovery Platform",
+    description: [
+      "Built a responsive React SPA for AI-driven recipe discovery and meal planning, featuring AI Chef for personalized recipe generation, trending recipes feed, and ingredient-based search for intelligent meal suggestions.",
+      "Integrated AI-powered features to generate recipes from available ingredients, with a clean, modern UI focused on seamless browsing experience across devices."
+    ],
+    tech: ["React", "Vite", "Tailwind CSS", "AI Integration"],
+    liveUrl: "https://easyeats-ai.netlify.app/",
+    images: [
+      "https://sudipoffice.github.io/portfolioImages/images/EasyEats-AI/Home.webp",
+      "https://sudipoffice.github.io/portfolioImages/images/EasyEats-AI/Trending.webp",
+      "https://sudipoffice.github.io/portfolioImages/images/EasyEats-AI/AIChef.webp",
+      "https://sudipoffice.github.io/portfolioImages/images/EasyEats-AI/Ingredients.webp"
+    ],
+    accent: "from-green-500 to-emerald-600"
   }
 ]
 

@@ -44,6 +44,15 @@ export default {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
         },
+        shimmer: {
+          '0%': { backgroundPosition: '0% 50%' },
+          '50%': { backgroundPosition: '100% 50%' },
+          '100%': { backgroundPosition: '0% 50%' },
+        },
+        glowPulse: {
+          '0%, 100%': { boxShadow: '0 0 8px rgba(59,130,246,0.3)' },
+          '50%': { boxShadow: '0 0 20px rgba(59,130,246,0.6)' },
+        },
       },
       animation: {
         slideInLeft: 'slideInLeft 1s ease-out forwards',
@@ -54,6 +63,8 @@ export default {
         marquee: 'marquee 25s linear infinite',
         marquee2: 'marquee2 25s linear infinite',
         hop: 'hop 0.5s ease-in-out infinite',
+        shimmer: 'shimmer 3s ease infinite',
+        glowPulse: 'glowPulse 2s ease-in-out infinite',
       },
       lineHeight: {
         'extra-tight': '0.73', // Example for tighter line height

@@ -73,7 +73,7 @@ const Skills = () => {
       id="skills"
       className="pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 min-h-screen bg-white dark:bg-gray-900 overflow-hidden"
     >
-      <div className="flex justify-center text-5xl sm:text-6xl md:text-8xl font-extenda40 text-blue-700 mb-8 sm:mb-12">
+      <div className="flex justify-center text-5xl sm:text-6xl md:text-8xl font-extenda40 bg-gradient-to-r from-emerald-500 to-teal-400 bg-clip-text text-transparent mb-8 sm:mb-12">
         {'{ SKILLS }'}
       </div>
 
