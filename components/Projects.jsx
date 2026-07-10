@@ -15,16 +15,19 @@ const ProjectCard = ({ project, index, visible }) => {
 
   return (
     <div
-      className={`flex flex-col backdrop-blur-md bg-white/50 dark:bg-gray-700/20 border border-white/20 dark:border-gray-600/10 rounded-3xl overflow-hidden shadow-md transition-all duration-700 hover:shadow-xl hover:border-violet-300/30 dark:hover:border-violet-600/20 hover:-translate-y-1 ${
+      className={`group flex flex-col backdrop-blur-md bg-white/50 dark:bg-gray-700/20 border border-white/20 dark:border-gray-600/10 rounded-3xl overflow-hidden shadow-md transition-all duration-700 hover:shadow-[0_0_30px_rgba(139,92,246,0.15)] dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] hover:-translate-y-1.5 ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
       style={{ transitionDelay: `${index * 200}ms` }}
     >
+      {/* Glow behind accent bar */}
+      <div className={`absolute top-0 left-0 w-full h-6 bg-gradient-to-r opacity-0 group-hover:opacity-30 transition-opacity duration-500 blur-xl ${project.accent}`} />
+
       {/* Accent bar */}
-      <div className={`h-1 w-full bg-gradient-to-r bg-[length:200%_100%] animate-shimmer ${project.accent}`} />
+      <div className={`relative h-1 w-full bg-gradient-to-r bg-[length:200%_100%] animate-shimmer ${project.accent}`} />
 
       {/* Image */}
-      <div className="relative h-48 sm:h-56 lg:h-60 overflow-hidden">
+      <div className="relative h-48 sm:h-56 lg:h-60 overflow-hidden bg-gray-100 dark:bg-gray-800">
         {project.images && project.images.length > 0 ? (
           <>
             {project.images.map((img, i) => (
@@ -32,12 +35,12 @@ const ProjectCard = ({ project, index, visible }) => {
                 key={i}
                 src={img}
                 alt={`${project.title} screenshot ${i + 1}`}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${
+                className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${
                   i === currentImg ? "opacity-100" : "opacity-0"
                 }`}
               />
             ))}
-            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white/60 dark:from-gray-800/60 to-transparent pointer-events-none" />
+            <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white/70 dark:from-gray-800/70 to-transparent pointer-events-none" />
             {project.images.length > 1 && (
               <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                 {project.images.map((_, i) => (
@@ -46,8 +49,8 @@ const ProjectCard = ({ project, index, visible }) => {
                     onClick={() => setCurrentImg(i)}
                     className={`transition-all duration-300 ${
                       i === currentImg
-                        ? "w-5 h-1.5 bg-white rounded-full shadow-sm"
-                        : "w-1.5 h-1.5 bg-white/50 rounded-full hover:bg-white/70"
+                        ? "w-6 h-2 bg-white/90 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.4)]"
+                        : "w-2 h-2 bg-white/40 rounded-full hover:bg-white/60"
                     }`}
                   />
                 ))}
@@ -66,7 +69,7 @@ const ProjectCard = ({ project, index, visible }) => {
       {/* Content */}
       <div className="p-5 sm:p-6 lg:p-7">
         <div className="flex items-start justify-between gap-3 mb-3">
-          <div>
+          <div className="min-w-0">
             <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">
               {project.title}
             </h3>
@@ -80,7 +83,7 @@ const ProjectCard = ({ project, index, visible }) => {
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs px-3 py-1.5 rounded-xl bg-blue-500/90 hover:bg-blue-600 text-white font-medium transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
+                className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs px-3 py-1.5 rounded-xl bg-blue-500/80 hover:bg-blue-600 text-white font-medium transition-all duration-200 hover:-translate-y-0.5 shadow-sm hover:shadow-[0_0_14px_rgba(59,130,246,0.35)]"
               >
                 <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -93,7 +96,7 @@ const ProjectCard = ({ project, index, visible }) => {
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs px-3 py-1.5 rounded-xl bg-gray-600/80 hover:bg-gray-700 dark:bg-gray-500/60 dark:hover:bg-gray-400/60 text-white font-medium transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
+                className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs px-3 py-1.5 rounded-xl bg-white/70 dark:bg-gray-600/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-500/30 text-gray-600 dark:text-gray-300 font-medium transition-all duration-200 hover:-translate-y-0.5 hover:bg-white dark:hover:bg-gray-500/60 hover:shadow-[0_0_14px_rgba(107,114,128,0.2)]"
               >
                 <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
@@ -107,7 +110,7 @@ const ProjectCard = ({ project, index, visible }) => {
         <ul className="space-y-1.5 mb-4 sm:mb-5">
           {project.description.map((point, i) => (
             <li key={i} className="text-[11px] sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex gap-2.5">
-              <span className="text-blue-400 mt-0.5 flex-shrink-0 text-xs">▸</span>
+              <span className="text-violet-400 mt-0.5 flex-shrink-0 text-xs drop-shadow-[0_0_4px_rgba(139,92,246,0.3)]">▸</span>
               <span>{point}</span>
             </li>
           ))}
@@ -117,7 +120,7 @@ const ProjectCard = ({ project, index, visible }) => {
           {project.tech.map((tech) => (
             <span
               key={tech}
-              className="text-[9px] sm:text-[11px] px-2.5 py-1 rounded-full bg-gray-100/80 dark:bg-gray-600/30 text-gray-500 dark:text-gray-400 font-medium border border-gray-200/40 dark:border-gray-500/20"
+              className="text-[9px] sm:text-[11px] px-2.5 py-1 rounded-full bg-white/70 dark:bg-gray-600/30 text-gray-500 dark:text-gray-400 font-medium border border-gray-200/40 dark:border-gray-500/20 backdrop-blur-sm hover:border-violet-300/40 dark:hover:border-violet-500/30 hover:shadow-[0_0_10px_rgba(139,92,246,0.15)] transition-all duration-200"
             >
               {tech}
             </span>
@@ -149,11 +152,17 @@ const Projects = () => {
   return (
     <div
       id="projects"
-      className="relative pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 min-h-screen bg-gray-200 dark:bg-gray-800 overflow-hidden"
+      className="relative pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 via-violet-50/40 to-purple-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
     >
-      <div className="absolute top-20 left-10 w-72 h-72 bg-violet-500/5 dark:bg-violet-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-40 right-10 w-80 h-80 bg-purple-500/5 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/3 right-1/3 w-64 h-64 bg-pink-500/5 dark:bg-pink-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 opacity-[0.025] dark:opacity-[0.04] pointer-events-none" style={{
+        backgroundImage: "radial-gradient(circle at 1px 1px, #8b5cf6 1px, transparent 0)",
+        backgroundSize: "36px 36px",
+      }} />
+      <div className="absolute top-20 -left-10 w-[28rem] h-[28rem] bg-violet-400/10 dark:bg-violet-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-40 -right-10 w-[32rem] h-[32rem] bg-purple-400/10 dark:bg-purple-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-80 h-80 bg-pink-400/10 dark:bg-pink-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-60 left-1/4 w-72 h-72 bg-cyan-400/10 dark:bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-blue-400/10 dark:bg-blue-500/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="flex justify-end text-5xl sm:text-6xl md:text-8xl font-extenda40 bg-gradient-to-r from-violet-500 to-purple-400 bg-clip-text text-transparent px-6 sm:px-12 md:px-16 mb-8 sm:mb-12">
         [ PROJECTS ]

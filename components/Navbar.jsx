@@ -2,19 +2,23 @@ import { useEffect, useState } from 'react'
 import logoLight from '../src/assets/images/logoLight.webp'
 import logoDark from '../src/assets/images/logoDark.webp'
 import DarkLightMode from './DarkLightMode'
-import { NavLink } from 'react-router-dom'
+import { useLocation, Link } from 'react-router-dom'
+
+const sectionIds = ['home', 'about', 'skills', 'projects', 'contact'];
 
 const Navbar = ({theme}) => {
   const [isDark, setIsDark] = theme
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
+  const location = useLocation()
 
   const navLinks = [
-    { path: '/', label: 'Home', activeLabel: '( Home )', color: 'text-blue-700 dark:text-blue-600' },
-    { path: '/about', label: 'About', activeLabel: '< About >', color: 'text-sky-500' },
-    { path: '/skills', label: 'Skills', activeLabel: '{ Skills }', color: 'text-emerald-500' },
-    { path: '/projects', label: 'Projects', activeLabel: '[ Projects ]', color: 'text-violet-500' },
-    { path: '/contact', label: 'Contact', activeLabel: '` Contact `', color: 'text-purple-500' },
+    { path: '/', label: 'Home', activeLabel: '( Home )', id: 'home', color: 'text-blue-700 dark:text-blue-600' },
+    { path: '/about', label: 'About', activeLabel: '< About >', id: 'about', color: 'text-sky-500' },
+    { path: '/skills', label: 'Skills', activeLabel: '{ Skills }', id: 'skills', color: 'text-emerald-500' },
+    { path: '/projects', label: 'Projects', activeLabel: '[ Projects ]', id: 'projects', color: 'text-violet-500' },
+    { path: '/contact', label: 'Contact', activeLabel: '` Contact `', id: 'contact', color: 'text-purple-500' },
   ];
 
   useEffect(() => {
@@ -33,6 +37,36 @@ const Navbar = ({theme}) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          let current = 'home';
+          let minDist = Infinity;
+          sectionIds.forEach((id) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const rect = el.getBoundingClientRect();
+            const dist = Math.abs(rect.top);
+            if (dist < minDist) {
+              minDist = dist;
+              current = id;
+            }
+          });
+          setActiveSection(current);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location]);
+
+  const isActive = (id) => activeSection === id;
 
   return (
     <>
@@ -56,20 +90,18 @@ const Navbar = ({theme}) => {
         </div>
 
         <nav className="flex items-center gap-1 sm:gap-2 z-20">
-          {navLinks.map(({ path, label, activeLabel, color }) => (
-            <NavLink
+          {navLinks.map(({ path, label, activeLabel, id, color }) => (
+            <Link
               key={path}
               to={path}
-              className={({ isActive }) =>
-                    `relative px-3 sm:px-5 py-1.5 sm:py-2 text-sm sm:text-base font-light transition-all duration-300 rounded-lg ${
-                  isActive
-                    ? `${color} font-medium`
-                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
-                }`
-              }
+              className={`relative px-3 sm:px-5 py-1.5 sm:py-2 text-sm sm:text-base font-light transition-all duration-300 rounded-lg ${
+                isActive(id)
+                  ? `${color} font-medium scale-[1.04]`
+                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
+              }`}
             >
-              {({ isActive }) => (isActive ? activeLabel : label)}
-            </NavLink>
+              {isActive(id) ? activeLabel : label}
+            </Link>
           ))}
         </nav>
 
@@ -126,19 +158,17 @@ const Navbar = ({theme}) => {
         <div className="fixed inset-0 z-40 flex sm:hidden">
           <div className="absolute inset-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-2xl" />
           <nav className="relative w-full h-full flex flex-col items-center justify-center gap-6 p-8">
-            {navLinks.map(({ path, label, activeLabel, color }) => (
-              <NavLink
+            {navLinks.map(({ path, label, activeLabel, id, color }) => (
+              <Link
                 key={path}
                 to={path}
-                className={({ isActive }) =>
-                  `text-lg font-light transition-all duration-300 ${
-                    isActive ? `${color} font-medium` : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
-                  }`
-                }
+                className={`text-lg font-light transition-all duration-300 ${
+                  isActive(id) ? `${color} font-medium` : 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
-                {({ isActive }) => (isActive ? activeLabel : label)}
-              </NavLink>
+                {isActive(id) ? activeLabel : label}
+              </Link>
             ))}
           </nav>
         </div>

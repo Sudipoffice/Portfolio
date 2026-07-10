@@ -273,9 +273,16 @@ const About = () => {
       {/* RIGHT COLUMN: Experience + Education */}
       <div ref={expRef} className="lg:w-2/5 xl:w-2/5">
         <div className={`mb-6 sm:mb-8 transition-all duration-700 ${visible.exp ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extenda80 text-gray-600 dark:text-gray-400 text-center mb-5 sm:mb-7 tracking-wide">
-            EXPERIENCE
-          </h2>
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-5 sm:mb-7">
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-teal-400/50" />
+            <span className="inline-flex items-center gap-2 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/50 dark:bg-gray-700/30 backdrop-blur-sm border border-teal-300/30 dark:border-teal-600/20 shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 shadow-[0_0_6px_rgba(45,212,191,0.5)]" />
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-extenda40 bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent tracking-widest">
+                EXPERIENCE
+              </h2>
+            </span>
+            <span className="h-px flex-1 bg-gradient-to-r from-teal-400/50 to-transparent" />
+          </div>
           <div className="relative">
             <div className="absolute left-[5px] sm:left-[5px] top-1 bottom-1 w-0.5 bg-gradient-to-b from-teal-400 via-teal-500 to-teal-600 dark:from-teal-400 dark:via-teal-500 dark:to-teal-600 rounded-full opacity-60" />
             {experienceData.map((item, i) => (
@@ -285,9 +292,16 @@ const About = () => {
         </div>
 
         <div className={`transition-all duration-700 delay-300 ${visible.exp ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extenda80 text-gray-600 dark:text-gray-400 text-center mb-5 sm:mb-7 tracking-wide">
-            EDUCATION
-          </h2>
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-5 sm:mb-7">
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-blue-400/50" />
+            <span className="inline-flex items-center gap-2 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/50 dark:bg-gray-700/30 backdrop-blur-sm border border-blue-300/30 dark:border-blue-600/20 shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_6px_rgba(96,165,250,0.5)]" />
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-extenda40 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent tracking-widest">
+                EDUCATION
+              </h2>
+            </span>
+            <span className="h-px flex-1 bg-gradient-to-r from-blue-400/50 to-transparent" />
+          </div>
           <div className="relative">
             <div className="absolute left-[5px] sm:left-[5px] top-1 bottom-1 w-0.5 bg-gradient-to-b from-blue-600 via-green-500 to-yellow-500 dark:from-blue-400 dark:via-green-400 dark:to-yellow-400 rounded-full opacity-60" />
             {educationData.map((item, i) => (
