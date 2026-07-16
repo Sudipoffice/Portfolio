@@ -48,7 +48,7 @@ const TimelineItem = ({ item, index, type }) => {
       />
 
       <div
-        className={`backdrop-blur-md bg-white/60 dark:bg-gray-700/30 border border-white/30 dark:border-gray-600/20 rounded-xl p-3.5 sm:p-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 ${
+        className={`backdrop-blur-md bg-white/70 dark:bg-gray-700/30 border border-white/30 dark:border-gray-600/20 rounded-xl p-3.5 sm:p-5 shadow-lg hover:shadow-[0_0_20px_rgba(45,212,191,0.1)] dark:hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5 ${
           type === "education" ? item.accentBg : ""
         }`}
         style={{ transitionDelay: `${index * 180 + 100}ms` }}
@@ -171,11 +171,11 @@ const About = () => {
   return (
     <div
       id="about"
-      className="relative pt-20 sm:pt-28 md:pt-36 px-4 sm:px-8 md:px-16 lg:px-20 min-h-screen bg-slate-200 dark:bg-gray-800 overflow-hidden"
+      className="relative pt-20 sm:pt-28 md:pt-36 px-4 sm:px-8 md:px-16 lg:px-20 min-h-screen bg-gradient-to-br from-slate-100 via-blue-50/30 to-cyan-50/20 dark:from-gray-800 dark:via-gray-800 dark:to-gray-800 overflow-hidden"
     >
-      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/5 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-40 right-10 w-80 h-80 bg-cyan-500/5 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-purple-500/5 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300/20 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-40 right-10 w-80 h-80 bg-cyan-300/20 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-purple-300/20 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 pb-16">
       {/* LEFT COLUMN: Bio Section */}
@@ -197,7 +197,7 @@ const About = () => {
             visible.bio ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <div className="backdrop-blur-md bg-white/60 dark:bg-gray-700/30 border border-white/30 dark:border-gray-600/20 rounded-2xl p-4 sm:p-6 shadow-lg">
+          <div className="backdrop-blur-md bg-white/70 dark:bg-gray-700/30 border border-white/30 dark:border-gray-600/20 rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.08)] transition-shadow duration-300">
             <div className="flex items-center gap-4 sm:gap-5 mb-4 sm:mb-5">
               <div className="relative flex-shrink-0">
                 <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-full overflow-hidden ring-2 ring-blue-500/30 dark:ring-blue-400/30">
@@ -248,7 +248,7 @@ const About = () => {
               {aboutData.chips.map((chip) => (
                 <span
                   key={chip}
-                  className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full bg-white/70 dark:bg-gray-600/40 text-gray-600 dark:text-gray-300 font-medium border border-gray-200/50 dark:border-gray-500/30 backdrop-blur-sm shadow-sm"
+                  className="text-[10px] sm:text-xs px-2.5 py-1 rounded-full bg-white/70 dark:bg-gray-600/40 text-gray-700 dark:text-gray-300 font-medium border border-gray-200/50 dark:border-gray-500/30 backdrop-blur-sm shadow-sm hover:shadow-[0_0_10px_rgba(45,212,191,0.1)] transition-shadow duration-200"
                 >
                   {chip}
                 </span>

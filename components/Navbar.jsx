@@ -74,7 +74,7 @@ const Navbar = ({theme}) => {
       <div
         className={`fixed top-0 left-0 w-full z-50 hidden sm:flex items-center justify-around transition-all duration-500 ${
           isScrolled
-            ? 'bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl shadow-lg shadow-black/5'
+            ? 'bg-gradient-to-r from-white/70 via-blue-50/40 to-white/70 dark:from-gray-900/70 dark:via-gray-900/70 dark:to-gray-900/70 backdrop-blur-xl shadow-lg shadow-black/5'
             : 'bg-transparent'
         }`}
       >
@@ -82,7 +82,7 @@ const Navbar = ({theme}) => {
           <div className={`absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm ${isScrolled ? '' : 'opacity-30'}`} />
           <div className={`relative p-2 sm:p-2.5 rounded-full transition-all duration-500 ${
             isScrolled
-              ? 'bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm'
+              ? 'bg-white/60 dark:bg-gray-800/60 backdrop-blur-sm shadow-[0_0_10px_rgba(59,130,246,0.08)]'
               : 'bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-md'
           }`}>
             <img src={isDark ? logoDark : logoLight} alt="Logo" className="w-8 sm:w-12" />
@@ -114,9 +114,9 @@ const Navbar = ({theme}) => {
       <div
         className={`fixed top-0 left-0 w-full z-50 flex sm:hidden items-center justify-between px-4 transition-all duration-500 ${
           isMenuOpen
-            ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl'
+            ? 'bg-gradient-to-r from-white/80 via-blue-50/40 to-white/80 dark:from-gray-900/80 dark:via-gray-900/80 dark:to-gray-900/80 backdrop-blur-xl'
             : isScrolled
-              ? 'bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl shadow-lg shadow-black/5'
+              ? 'bg-gradient-to-r from-white/70 via-blue-50/40 to-white/70 dark:from-gray-900/70 dark:via-gray-900/70 dark:to-gray-900/70 backdrop-blur-xl shadow-lg shadow-black/5'
               : 'bg-transparent'
         }`}
       >

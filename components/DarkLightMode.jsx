@@ -15,7 +15,7 @@ const DarkLightMode = ({theme}) => {
           onChange={handleToggle}
           className="sr-only peer"
         />
-        <div className="relative w-[52px] sm:w-[56px] h-[26px] sm:h-[28px] rounded-full transition-all duration-500 peer-checked:bg-gradient-to-r peer-checked:from-blue-900/60 peer-checked:to-purple-900/60 bg-gradient-to-r from-amber-200/60 to-sky-200/60 backdrop-blur-sm border border-white/20 dark:border-white/10 shadow-inner">
+        <div className="relative w-[52px] sm:w-[56px] h-[26px] sm:h-[28px] rounded-full transition-all duration-500 peer-checked:bg-gradient-to-r peer-checked:from-blue-900/60 peer-checked:to-purple-900/60 bg-gradient-to-r from-amber-300/70 to-sky-300/70 backdrop-blur-sm border border-white/30 dark:border-white/10 shadow-inner">
           <div className={`absolute inset-0 rounded-full transition-opacity duration-500 ${
             isDark ? 'opacity-100' : 'opacity-0'
           }`} style={{
@@ -24,12 +24,12 @@ const DarkLightMode = ({theme}) => {
           <div className={`absolute inset-0 rounded-full transition-opacity duration-500 ${
             isDark ? 'opacity-0' : 'opacity-100'
           }`} style={{
-            boxShadow: !isDark ? 'inset 0 0 12px rgba(251,191,36,0.1)' : 'none'
+            boxShadow: !isDark ? 'inset 0 0 16px rgba(251,191,36,0.18)' : 'none'
           }} />
           <div className={`absolute top-[3px] left-[3px] w-[20px] h-[20px] sm:w-[22px] sm:h-[22px] rounded-full flex items-center justify-center transition-all duration-500 ${
             isDark
               ? 'translate-x-[26px] sm:translate-x-[28px] bg-gray-800 shadow-[0_0_8px_rgba(99,102,241,0.3)]'
-              : 'translate-x-0 bg-white shadow-[0_0_8px_rgba(251,191,36,0.2)]'
+              : 'translate-x-0 bg-white shadow-[0_0_12px_rgba(251,191,36,0.35)]'
           }`}>
             {isDark ? (
               <svg className="w-3 h-3 text-blue-300" fill="currentColor" viewBox="0 0 24 24">

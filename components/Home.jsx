@@ -1,35 +1,34 @@
+import { useState } from "react"
 import Resume from "../src/assets/files/SudipMandalResume.pdf"
 
-const Home = ({ imgLoad }) => {
-  const [isImageLoaded, setIsImageLoaded] = imgLoad;
-
-  const handleImageLoad = () => {
-    setIsImageLoaded(true);
-  };
+const Home = () => {
+  const [loaded, setLoaded] = useState(false);
 
   return (
     <div
       id="home"
-      className="relative min-h-screen bg-white dark:bg-gray-900 overflow-hidden flex flex-col sm:flex-row-reverse justify-around pb-32 sm:pb-0"
+      className="relative min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 overflow-hidden flex flex-col sm:flex-row-reverse justify-around pb-32 sm:pb-0"
     >
       {/* Glow orbs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/5 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 right-10 w-80 h-80 bg-purple-500/5 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/5 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300/20 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-20 right-10 w-80 h-80 bg-purple-300/20 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-300/20 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Image part */}
       <div onContextMenu={(e) => e.preventDefault()} className="flex flex-row justify-center sm:justify-evenly pt-0 sm:pt-12 md:pt-12 lg:pt-0 xl:pt-0 w-screen sm:w-5/6 md:w-4/6 lg:w-5/6 xl:w-3/6">
-        {isImageLoaded ? (
+        <div className="relative h-6/7 w-4/6 px-4 sm:px-0 flex justify-end items-end select-none z-0">
+          <div className={`absolute inset-0 rounded-2xl bg-gray-200 dark:bg-gray-700 ${loaded ? "opacity-0" : "opacity-100"} transition-opacity duration-500`} />
           <img
-            src={"https://sudipoffice.github.io/portfolioImages/images/Portfolio/sudipBW.webp"}
+            src="https://sudipoffice.github.io/portfolioImages/images/Portfolio/sudipBW.webp"
             alt="Sudip Mandal"
             loading="eager"
-            className="h-6/7 w-4/6 px-4 sm:px-0 flex justify-end items-end select-none z-0"
-            onLoad={handleImageLoad}
+            fetchPriority="high"
+            width="400"
+            height="500"
+            onLoad={() => setLoaded(true)}
+            className={`w-full h-auto object-contain transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
           />
-        ) : (
-          <></>
-        )}
+        </div>
 
         <div className="flex flex-col justify-end items-center py-2 sm:py-4 md:py-4 lg:py-20 xl:py-44 gap-3 sm:gap-4">
           <div className="h-20 sm:h-28 lg:h-36 w-[2px] bg-gradient-to-b from-blue-500 to-transparent"></div>

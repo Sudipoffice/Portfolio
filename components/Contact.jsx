@@ -38,13 +38,13 @@ const Contact = () => {
   return (
     <div
       id="contact"
-      className="relative pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 min-h-screen bg-white dark:bg-gray-900 overflow-hidden"
+      className="relative pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 min-h-screen bg-gradient-to-br from-white via-blue-50/20 to-purple-50/20 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 overflow-hidden"
     >
       {/* Glow orbs */}
-      <div className="absolute top-40 left-10 w-72 h-72 bg-blue-500/5 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-60 right-10 w-80 h-80 bg-purple-500/5 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-40 left-1/3 w-80 h-80 bg-cyan-500/5 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-pink-500/5 dark:bg-pink-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-40 left-10 w-72 h-72 bg-blue-300/20 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-60 right-10 w-80 h-80 bg-purple-300/20 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-40 left-1/3 w-80 h-80 bg-cyan-300/20 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-pink-300/20 dark:bg-pink-400/5 rounded-full blur-3xl pointer-events-none" />
 
       {/* Heading */}
       <div className="relative flex justify-center text-5xl sm:text-6xl md:text-8xl font-extenda40 mb-10 sm:mb-14 bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">
@@ -62,10 +62,10 @@ const Contact = () => {
               key={card.label}
               {...(card.href ? { href: card.href } : {})}
               {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className={`group flex flex-col backdrop-blur-md bg-white/50 dark:bg-gray-700/20 border border-white/20 dark:border-gray-600/10 rounded-3xl shadow-md transition-all duration-300 hover:-translate-y-1 ${card.glow}`}
+              className={`group flex flex-col backdrop-blur-md bg-white/60 dark:bg-gray-700/20 border border-white/30 dark:border-gray-600/10 rounded-3xl shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${card.glow}`}
             >
               <div className="flex flex-col items-center justify-center p-6 sm:p-8 lg:p-10 text-center">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-2xl bg-gray-100 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 mb-4 group-hover:scale-110 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.25)] group-hover:bg-gray-50 dark:group-hover:bg-gray-600/50">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-2xl bg-white/70 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 mb-4 group-hover:scale-110 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] dark:group-hover:shadow-[0_0_20px_rgba(96,165,250,0.25)] group-hover:bg-blue-50/80 dark:group-hover:bg-gray-600/50 backdrop-blur-sm border border-white/30 dark:border-gray-600/20">
                   <svg className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" {...(card.filled ? { fill: "currentColor" } : { fill: "none", stroke: "currentColor" })} viewBox="0 0 24 24">
                     {card.icon}
                   </svg>
@@ -112,7 +112,7 @@ const Contact = () => {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gray-100 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 transition-all duration-300 hover:-translate-y-0.5 ${social.hoverBg} ${social.hoverText} ${social.glow}`}
+              className={`flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white/70 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 transition-all duration-300 hover:-translate-y-0.5 backdrop-blur-sm border border-white/30 dark:border-gray-600/20 ${social.hoverBg} ${social.hoverText} ${social.glow}`}
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d={social.path} />

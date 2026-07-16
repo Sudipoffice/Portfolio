@@ -2,7 +2,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative w-full bg-slate-300 dark:bg-slate-800 overflow-hidden">
+    <footer className="relative w-full bg-gradient-to-r from-slate-200 via-slate-300 to-slate-200 dark:from-slate-800 dark:via-slate-800 dark:to-slate-800 overflow-hidden">
       <div className="h-[2px] w-full bg-gradient-to-r from-blue-500 via-purple-500 via-pink-500 to-cyan-500 bg-[length:200%_100%] animate-shimmer" />
 
       <div className="absolute -top-20 -left-20 w-40 h-40 bg-blue-500/10 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />

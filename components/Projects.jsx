@@ -15,7 +15,7 @@ const ProjectCard = ({ project, index, visible }) => {
 
   return (
     <div
-      className={`group flex flex-col backdrop-blur-md bg-white/50 dark:bg-gray-700/20 border border-white/20 dark:border-gray-600/10 rounded-3xl overflow-hidden shadow-md transition-all duration-700 hover:shadow-[0_0_30px_rgba(139,92,246,0.15)] dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] hover:-translate-y-1.5 ${
+      className={`group flex flex-col backdrop-blur-md bg-white/50 dark:bg-gray-700/20 border border-white/20 dark:border-gray-600/10 rounded-3xl overflow-hidden shadow-md transition-all duration-700 hover:shadow-[0_0_30px_rgba(139,92,246,0.25)] dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] hover:-translate-y-1.5 ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
       style={{ transitionDelay: `${index * 200}ms` }}
@@ -110,7 +110,7 @@ const ProjectCard = ({ project, index, visible }) => {
         <ul className="space-y-1.5 mb-4 sm:mb-5">
           {project.description.map((point, i) => (
             <li key={i} className="text-[11px] sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex gap-2.5">
-              <span className="text-violet-400 mt-0.5 flex-shrink-0 text-xs drop-shadow-[0_0_4px_rgba(139,92,246,0.3)]">▸</span>
+              <span className="text-violet-500 mt-0.5 flex-shrink-0 text-xs drop-shadow-[0_0_6px_rgba(139,92,246,0.4)]">▸</span>
               <span>{point}</span>
             </li>
           ))}
@@ -120,7 +120,7 @@ const ProjectCard = ({ project, index, visible }) => {
           {project.tech.map((tech) => (
             <span
               key={tech}
-              className="text-[9px] sm:text-[11px] px-2.5 py-1 rounded-full bg-white/70 dark:bg-gray-600/30 text-gray-500 dark:text-gray-400 font-medium border border-gray-200/40 dark:border-gray-500/20 backdrop-blur-sm hover:border-violet-300/40 dark:hover:border-violet-500/30 hover:shadow-[0_0_10px_rgba(139,92,246,0.15)] transition-all duration-200"
+              className="text-[9px] sm:text-[11px] px-2.5 py-1 rounded-full bg-white/70 dark:bg-gray-600/30 text-gray-600 dark:text-gray-400 font-medium border border-gray-200/40 dark:border-gray-500/20 backdrop-blur-sm hover:border-violet-300/40 dark:hover:border-violet-500/30 hover:shadow-[0_0_12px_rgba(139,92,246,0.2)] dark:hover:shadow-[0_0_10px_rgba(139,92,246,0.15)] transition-all duration-200"
             >
               {tech}
             </span>
@@ -154,15 +154,15 @@ const Projects = () => {
       id="projects"
       className="relative pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 via-violet-50/40 to-purple-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
     >
-      <div className="absolute inset-0 opacity-[0.025] dark:opacity-[0.04] pointer-events-none" style={{
+      <div className="absolute inset-0 opacity-[0.06] dark:opacity-[0.04] pointer-events-none" style={{
         backgroundImage: "radial-gradient(circle at 1px 1px, #8b5cf6 1px, transparent 0)",
         backgroundSize: "36px 36px",
       }} />
-      <div className="absolute top-20 -left-10 w-[28rem] h-[28rem] bg-violet-400/10 dark:bg-violet-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-40 -right-10 w-[32rem] h-[32rem] bg-purple-400/10 dark:bg-purple-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-80 h-80 bg-pink-400/10 dark:bg-pink-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-60 left-1/4 w-72 h-72 bg-cyan-400/10 dark:bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-blue-400/10 dark:bg-blue-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-20 -left-10 w-[28rem] h-[28rem] bg-violet-300/25 dark:bg-violet-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-40 -right-10 w-[32rem] h-[32rem] bg-purple-300/25 dark:bg-purple-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-80 h-80 bg-pink-300/25 dark:bg-pink-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-60 left-1/4 w-72 h-72 bg-cyan-300/25 dark:bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-blue-300/25 dark:bg-blue-500/10 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="flex justify-end text-5xl sm:text-6xl md:text-8xl font-extenda40 bg-gradient-to-r from-violet-500 to-purple-400 bg-clip-text text-transparent px-6 sm:px-12 md:px-16 mb-8 sm:mb-12">
         [ PROJECTS ]
