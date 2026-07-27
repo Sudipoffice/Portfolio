@@ -80,6 +80,26 @@ export const skillsData = [
 
 export const projectsData = [
   {
+    id: 4,
+    title: "Career Copilot AI",
+    subtitle: "AI-Powered Career Preparation Platform",
+    description: [
+      "Built a guest-first AI platform that analyzes resumes (ATS scoring, keyword gaps, formatting issues), matches job descriptions, identifies skill gaps, generates behavioral/technical interview questions, and creates personalized study plans — all without requiring user authentication.",
+      "Integrated OpenRouter AI (DeepSeek v3.1) for resume analysis, JD parsing, skill gap detection, question generation, and study plan creation; implemented persistent question state via sessionStorage and animated loading states for all AI workflows."
+    ],
+    tech: ["Next.js 15", "TypeScript", "Tailwind CSS", "Node.js", "Express", "MongoDB", "Mongoose", "OpenRouter AI", "Zod", "pnpm"],
+    liveUrl: "https://career-copilotai.netlify.app/",
+    githubUrl: "https://github.com/Sudipoffice/Career-Copilot.git",
+    images: [
+      "https://sudipoffice.github.io/portfolioImages/images/Career-Copilot/Homepage.webp",
+      "https://sudipoffice.github.io/portfolioImages/images/Career-Copilot/Dashboard.webp",
+      "https://sudipoffice.github.io/portfolioImages/images/Career-Copilot/Resume.webp",
+      "https://sudipoffice.github.io/portfolioImages/images/Career-Copilot/SkillGapAnalysis.webp",
+      "https://sudipoffice.github.io/portfolioImages/images/Career-Copilot/StudyPlan.webp"
+    ],
+    accent: "from-indigo-600 to-purple-600"
+  },
+  {
     id: 1,
     title: "QA Tracker",
     subtitle: "Project Management App",
