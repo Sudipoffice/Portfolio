@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 const CustomCursor = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const cursorRef = useRef(null);
 
   useEffect(() => {
     const onMouseMove = (e) => {
-      setPosition({ x: e.clientX, y: e.clientY });
+      if (cursorRef.current) {
+        cursorRef.current.style.left = `${e.clientX}px`;
+        cursorRef.current.style.top = `${e.clientY}px`;
+      }
     };
     document.addEventListener('mousemove', onMouseMove);
 
@@ -16,10 +19,7 @@ const CustomCursor = () => {
 
   return (
     <div
-      style={{
-        left: `${position.x}px`,
-        top: `${position.y}px`
-      }}
+      ref={cursorRef}
       className="custom-cursor bg-[rgba(112,141,169,0.58)]"
     ></div>
   );

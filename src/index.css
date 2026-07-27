@@ -2,105 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
     font-family: 'Extenda10';
     src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda10.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-  }
+}
+
 @font-face {
     font-family: 'Extenda20';
     src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda20.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-  }
+}
+
 @font-face {
     font-family: 'Extenda30';
     src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda30.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-  }
+}
+
 @font-face {
     font-family: 'Extenda40';
     src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda40.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-  }
-  @font-face {
+}
+
+@font-face {
     font-family: 'Extenda50';
     src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda50.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-  }
-  @font-face {
-    font-family: 'Extenda80';
-    src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda80.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
+}
+
 @font-face {
     font-family: 'Extenda90';
     src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda90.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-  }
-  @font-face {
+}
+
+@font-face {
     font-family: 'cfMed';
     src: url('https://sudipoffice.github.io/portfolioImages/fonts/cfMed.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
-  }
-  @font-face {
-    font-family: 'cfReg';
-    src: url('https://sudipoffice.github.io/portfolioImages/fonts/cfReg.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: 'klein';
-    src: url('https://sudipoffice.github.io/portfolioImages/fonts/klein.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
- 
-  .font-klein {
-    font-family: 'klein', sans-serif;
-  }
-  .font-extenda10 {
-    font-family: 'Extenda10', sans-serif;
-  }
-  .font-extenda20 {
-    font-family: 'Extenda20', sans-serif;
-  }
-.font-extenda30 {
-    font-family: 'Extenda30', sans-serif;
-  }
-.font-extenda40 {
-    font-family: 'Extenda40', sans-serif;
-  }
-  .font-extenda50 {
-    font-family: 'Extenda50', sans-serif;
-  }
-.font-extenda80 {
-    font-family: 'Extenda80', sans-serif;
-  }
-  .font-extenda90 {
-    font-family: 'Extenda90', sans-serif;
-  }
-  .font-klein {
-    font-family: 'cfMed', sans-serif;
-  }
-  .font-klein {
-    font-family: 'cfReg', sans-serif;
-  }
+}

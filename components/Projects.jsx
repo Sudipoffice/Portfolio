@@ -30,17 +30,13 @@ const ProjectCard = ({ project, index, visible }) => {
       <div className="relative h-48 sm:h-56 lg:h-60 overflow-hidden bg-gray-100 dark:bg-gray-800">
         {project.images && project.images.length > 0 ? (
           <>
-            {project.images.map((img, i) => (
-              <img
-                key={i}
-                src={img}
-                alt={`${project.title} screenshot ${i + 1}`}
-                className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${
-                  i === currentImg ? "opacity-100" : "opacity-0"
-                }`}
-              />
-            ))}
-            <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white/70 dark:from-gray-800/70 to-transparent pointer-events-none" />
+            <img
+              key={currentImg}
+              src={project.images[currentImg]}
+              alt={`${project.title} screenshot ${currentImg + 1}`}
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+            />
             {project.images.length > 1 && (
               <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
                 {project.images.map((_, i) => (

@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, lazy, Suspense } from 'react'
 import Navbar from '../components/Navbar'
 import { useLocation } from 'react-router-dom'
 import Home from '../components/Home.jsx';
-import About from '../components/About.jsx';
-import Skills from '../components/Skills.jsx';
-import Projects from '../components/Projects.jsx';
-import Contact from '../components/Contact.jsx';
 import Footer from '../components/Footer.jsx';
 import "./App.css"
 import CustomCursor from '../components/CustomCursor.jsx';
-import AdditionalSkills from '../components/AdditionalSkills.jsx';
+
+const About = lazy(() => import('../components/About.jsx'));
+const Skills = lazy(() => import('../components/Skills.jsx'));
+const Projects = lazy(() => import('../components/Projects.jsx'));
+const Contact = lazy(() => import('../components/Contact.jsx'));
+const AdditionalSkills = lazy(() => import('../components/AdditionalSkills.jsx'));
 
 function App() {
   const location = useLocation();
@@ -29,11 +30,13 @@ function App() {
       <Navbar theme={[isDark, setIsDark]} />
       <div>
         <section id='home'> <Home/> </section>
-        <section id='about'> <About/> </section>
-        <section id='skills'> <Skills/> </section>
-        <section><AdditionalSkills/></section>
-        <section id='projects'> <Projects/> </section>
-        <section id='contact'> <Contact/> </section>
+        <Suspense fallback={<div className="min-h-screen" />}>
+          <section id='about'> <About/> </section>
+          <section id='skills'> <Skills/> </section>
+          <section><AdditionalSkills/></section>
+          <section id='projects'> <Projects/> </section>
+          <section id='contact'> <Contact/> </section>
+        </Suspense>
       </div>
       <Footer/>
     </div>
