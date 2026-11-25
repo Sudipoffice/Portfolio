@@ -124,7 +124,7 @@ html.lenis body {
 
 @font-face {
     font-family: 'Extenda10';
-    src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda10.woff2') format('woff2');
+    src: url('/fonts/Extenda10.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -132,7 +132,7 @@ html.lenis body {
 
 @font-face {
     font-family: 'Extenda20';
-    src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda20.woff2') format('woff2');
+    src: url('/fonts/Extenda20.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -140,7 +140,7 @@ html.lenis body {
 
 @font-face {
     font-family: 'Extenda30';
-    src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda30.woff2') format('woff2');
+    src: url('/fonts/Extenda30.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -148,7 +148,7 @@ html.lenis body {
 
 @font-face {
     font-family: 'Extenda40';
-    src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda40.woff2') format('woff2');
+    src: url('/fonts/Extenda40.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -156,7 +156,7 @@ html.lenis body {
 
 @font-face {
     font-family: 'Extenda50';
-    src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda50.woff2') format('woff2');
+    src: url('/fonts/Extenda50.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -164,7 +164,7 @@ html.lenis body {
 
 @font-face {
     font-family: 'Extenda90';
-    src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda90.woff2') format('woff2');
+    src: url('/fonts/Extenda90.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -172,7 +172,7 @@ html.lenis body {
 
 @font-face {
     font-family: 'cfMed';
-    src: url('https://sudipoffice.github.io/portfolioImages/fonts/cfMed.woff2') format('woff2');
+    src: url('/fonts/cfMed.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
