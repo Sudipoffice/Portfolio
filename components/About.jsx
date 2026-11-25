@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
+import PropTypes from "prop-types";
 import { experienceData, educationData, aboutData } from "./data";
 import Resume from "../src/assets/files/SudipMandalResume.pdf";
+import Parallax from "./Parallax";
+import Watermark from "./Watermark";
 
 function highlightBio(text, highlights) {
   const escaped = highlights.map(h => h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
@@ -84,6 +87,73 @@ const TimelineItem = ({ item, index, type }) => {
                 </span>
               ))}
             </div>
+            {item.proof && (
+              <div className="mt-3 pt-3 border-t border-teal-200/50 dark:border-teal-700/30">
+                <p className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">
+                  Internship Proof
+                </p>
+                <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                  <a
+                    href={item.proof.lor}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block"
+                    title="Open Letter of Recommendation"
+                  >
+                    <div className="relative overflow-hidden rounded-lg border border-teal-200/60 dark:border-teal-700/30 aspect-[4/3] bg-white dark:bg-gray-800/60">
+                      <img
+                        src={item.proof.lor}
+                        alt="Letter of Recommendation"
+                        width="320"
+                        height="240"
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                      />
+                      <div className="absolute inset-0 flex items-end justify-center pb-2 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/90 text-gray-900 text-[10px] sm:text-[11px] font-semibold shadow-md">
+                          Open
+                          <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                    <p className="mt-1.5 text-[10px] sm:text-xs font-semibold text-teal-600 dark:text-teal-400 truncate">
+                      LOR
+                    </p>
+                  </a>
+                  <a
+                    href={item.proof.letter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group block"
+                    title="Open Internship Letter"
+                  >
+                    <div className="relative overflow-hidden rounded-lg border border-teal-200/60 dark:border-teal-700/30 aspect-[4/3] bg-white dark:bg-gray-800/60">
+                      <img
+                        src={item.proof.letter}
+                        alt="Internship Letter"
+                        width="320"
+                        height="240"
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                      />
+                      <div className="absolute inset-0 flex items-end justify-center pb-2 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-white/90 text-gray-900 text-[10px] sm:text-[11px] font-semibold shadow-md">
+                          Open
+                          <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M7 7h10v10" />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                    <p className="mt-1.5 text-[10px] sm:text-xs font-semibold text-teal-600 dark:text-teal-400 truncate">
+                      Letter
+                    </p>
+                  </a>
+                </div>
+              </div>
+            )}
           </>
         ) : (
           <>
@@ -120,11 +190,36 @@ const TimelineItem = ({ item, index, type }) => {
   );
 };
 
+TimelineItem.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.number,
+    period: PropTypes.string,
+    role: PropTypes.string,
+    company: PropTypes.string,
+    location: PropTypes.string,
+    dotColor: PropTypes.string,
+    accentBg: PropTypes.string,
+    accentText: PropTypes.string,
+    highlights: PropTypes.arrayOf(PropTypes.string),
+    skills: PropTypes.arrayOf(PropTypes.string),
+    proof: PropTypes.shape({
+      lor: PropTypes.string,
+      letter: PropTypes.string,
+    }),
+    institution: PropTypes.string,
+    degree: PropTypes.string,
+    logo: PropTypes.string,
+  }),
+  index: PropTypes.number,
+  type: PropTypes.oneOf(["experience", "education"]),
+};
+
 const About = () => {
-  const [visible, setVisible] = useState({ header: false, bio: false, exp: false });
+  const [visible, setVisible] = useState({ header: false, bio: false, exp: false, edu: false });
   const headerRef = useRef(null);
   const bioRef = useRef(null);
   const expRef = useRef(null);
+  const eduRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -168,16 +263,32 @@ const About = () => {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(prev => ({ ...prev, edu: true }));
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.05 }
+    );
+    if (eduRef.current) observer.observe(eduRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
       id="about"
       className="relative pt-20 sm:pt-28 md:pt-36 px-4 sm:px-8 md:px-16 lg:px-20 min-h-screen bg-gradient-to-br from-slate-100 via-blue-50/30 to-cyan-50/20 dark:from-gray-800 dark:via-gray-800 dark:to-gray-800 overflow-hidden"
     >
-      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300/20 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-40 right-10 w-80 h-80 bg-cyan-300/20 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-purple-300/20 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Parallax speed={-0.15} mouseFactor={26} className="absolute top-20 left-10 w-72 h-72 bg-blue-300/20 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Parallax speed={0.18} mouseFactor={34} className="absolute bottom-40 right-10 w-80 h-80 bg-cyan-300/20 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Parallax speed={0.08} mouseFactor={20} className="absolute top-1/3 right-1/4 w-64 h-64 bg-purple-300/20 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Watermark text="ABOUT" speed={0.1} className="-top-6 -right-8 sm:right-0" />
+      <Watermark text="SUDIP MANDAL" speed={-0.06} className="-bottom-10 -left-8" />
 
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 pb-16">
+      <div className="relative z-10 flex flex-col lg:flex-row gap-8 lg:gap-12 pb-16">
       {/* LEFT COLUMN: Bio Section */}
       <div className="flex flex-col lg:w-3/5 xl:w-3/5">
         <div ref={headerRef}>
@@ -268,9 +379,29 @@ const About = () => {
             </a>
           </div>
         </div>
+
+        {/* Education Timeline */}
+        <div ref={eduRef} className={`mt-8 sm:mt-10 transition-all duration-700 delay-100 ${visible.edu ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-5 sm:mb-7">
+            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-blue-400/50" />
+            <span className="inline-flex items-center gap-2 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/50 dark:bg-gray-700/30 backdrop-blur-sm border border-blue-300/30 dark:border-blue-600/20 shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_6px_rgba(96,165,250,0.5)]" />
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-extenda40 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent tracking-widest">
+                EDUCATION
+              </h2>
+            </span>
+            <span className="h-px flex-1 bg-gradient-to-r from-blue-400/50 to-transparent" />
+          </div>
+          <div className="relative">
+            <div className="absolute left-[5px] sm:left-[5px] top-1 bottom-1 w-0.5 bg-gradient-to-b from-blue-600 via-green-500 to-yellow-500 dark:from-blue-400 dark:via-green-400 dark:to-yellow-400 rounded-full opacity-60" />
+            {educationData.map((item, i) => (
+              <TimelineItem key={item.id} item={item} index={i} type="education" />
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* RIGHT COLUMN: Experience + Education */}
+      {/* RIGHT COLUMN: Experience */}
       <div ref={expRef} className="lg:w-2/5 xl:w-2/5">
         <div className={`mb-6 sm:mb-8 transition-all duration-700 ${visible.exp ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           <div className="flex items-center justify-center gap-3 sm:gap-4 mb-5 sm:mb-7">
@@ -287,25 +418,6 @@ const About = () => {
             <div className="absolute left-[5px] sm:left-[5px] top-1 bottom-1 w-0.5 bg-gradient-to-b from-teal-400 via-teal-500 to-teal-600 dark:from-teal-400 dark:via-teal-500 dark:to-teal-600 rounded-full opacity-60" />
             {experienceData.map((item, i) => (
               <TimelineItem key={item.id} item={item} index={i} type="experience" />
-            ))}
-          </div>
-        </div>
-
-        <div className={`transition-all duration-700 delay-300 ${visible.exp ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
-          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-5 sm:mb-7">
-            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-blue-400/50" />
-            <span className="inline-flex items-center gap-2 px-4 sm:px-5 py-1.5 sm:py-2 rounded-full bg-white/50 dark:bg-gray-700/30 backdrop-blur-sm border border-blue-300/30 dark:border-blue-600/20 shadow-sm">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 shadow-[0_0_6px_rgba(96,165,250,0.5)]" />
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-extenda40 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent tracking-widest">
-                EDUCATION
-              </h2>
-            </span>
-            <span className="h-px flex-1 bg-gradient-to-r from-blue-400/50 to-transparent" />
-          </div>
-          <div className="relative">
-            <div className="absolute left-[5px] sm:left-[5px] top-1 bottom-1 w-0.5 bg-gradient-to-b from-blue-600 via-green-500 to-yellow-500 dark:from-blue-400 dark:via-green-400 dark:to-yellow-400 rounded-full opacity-60" />
-            {educationData.map((item, i) => (
-              <TimelineItem key={item.id} item={item} index={i} type="education" />
             ))}
           </div>
         </div>

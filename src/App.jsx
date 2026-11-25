@@ -5,6 +5,7 @@ import Home from '../components/Home.jsx';
 import Footer from '../components/Footer.jsx';
 import "./App.css"
 import CustomCursor from '../components/CustomCursor.jsx';
+import SmoothScroll from '../components/SmoothScroll.jsx';
 
 const About = lazy(() => import('../components/About.jsx'));
 const Skills = lazy(() => import('../components/Skills.jsx'));
@@ -14,19 +15,30 @@ const AdditionalSkills = lazy(() => import('../components/AdditionalSkills.jsx')
 
 function App() {
   const location = useLocation();
-  const [isDark, setIsDark] = useState(JSON.parse(localStorage.getItem('isDarkMode')));
+  const [isDark, setIsDark] = useState(() => {
+    const stored = localStorage.getItem('isDarkMode');
+    return stored !== null ? JSON.parse(stored) : true;
+  });
+
+  React.useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDark);
+  }, [isDark]);
 
   React.useEffect(() => {
     const sectionId = location.pathname === '/' ? 'home' : location.pathname.slice(1);
     const section = document.getElementById(sectionId);
-    if (section) {
+    if (!section) return;
+    if (window.__lenis) {
+      window.__lenis.scrollTo(section, { duration: 1.4 });
+    } else {
       section.scrollIntoView({ behavior: 'smooth' });
     }
   }, [location]);
 
   return (
-    <div className={`${isDark? "dark" : ""} `}>
+    <div className="min-h-screen transition-colors duration-500">
     <CustomCursor/>
+    <SmoothScroll/>
       <Navbar theme={[isDark, setIsDark]} />
       <div>
         <section id='home'> <Home/> </section>

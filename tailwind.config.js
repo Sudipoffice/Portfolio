@@ -37,7 +37,7 @@ export default {
           '100%': { transform: 'translateX(-50%)' },
         },
         marquee2: {
-          '0%': { transform: 'translateX(50%)' },
+          '0%': { transform: 'translateX(-50%)' },
           '100%': { transform: 'translateX(0%)' },
         },
         hop: {
@@ -60,8 +60,8 @@ export default {
         slideInBottom: 'slideInBottom 1s ease-out forwards',
         fadeInUp: 'fadeInUp 0.7s ease-out forwards',
         scaleIn: 'scaleIn 0.5s ease-out forwards',
-        marquee: 'marquee 25s linear infinite',
-        marquee2: 'marquee2 25s linear infinite',
+        marquee: 'marquee 45s linear infinite',
+        marquee2: 'marquee2 45s linear infinite',
         hop: 'hop 0.5s ease-in-out infinite',
         shimmer: 'shimmer 3s ease infinite',
         glowPulse: 'glowPulse 2s ease-in-out infinite',

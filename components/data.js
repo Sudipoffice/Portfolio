@@ -1,6 +1,8 @@
 import LPU from "../src/assets/images/LPU.webp"
 import APS from "../src/assets/images/APS.webp"
 import KPS from "../src/assets/images/KPS.webp"
+import LOR from "../src/assets/files/LOR.png"
+import InternshipLetter from "../src/assets/files/InternshipLetter.png"
 
 export const aboutData = {
   name: "Sudip Mandal",
@@ -8,7 +10,7 @@ export const aboutData = {
   location: "Kolkata, India",
   profileImage: "https://sudipoffice.github.io/portfolioImages/images/Portfolio/sudipBW.webp",
   bio: [
-    "Full Stack Developer specializing in the MERN stack with over 2 years of experience building production-grade web applications. Currently engineering AI-driven recruitment technology at Banao Technologies — owning full-stack modules from design through deployment, including AI Interview systems, automated candidate assessment, and LLM-powered reporting dashboards.",
+    "Full Stack Developer specializing in the MERN stack with experience in building production-grade web applications. Currently engineering AI-driven recruitment technology at Banao Technologies — owning full-stack modules from design through deployment, including AI Interview systems, automated candidate assessment, and LLM-powered reporting dashboards.",
     "Proficient across the entire development spectrum: designing React/Next.js interfaces with TypeScript, architecting RESTful APIs with Node.js/Express and MongoDB/Mongoose, implementing JWT-based authentication with role-based access control, and integrating LLMs (Gemini) into real product workflows. Also experienced in browser automation with Playwright, containerized deployments with Docker, and VPS infrastructure management."
   ],
   highlights: [
@@ -32,7 +34,7 @@ export const experienceData = [
     company: "Banao Technologies",
     role: "Full Stack Intern",
     location: "Across The Globe",
-    period: "Jan 2026 – Present",
+    period: "Jan 2026 – Jul 2026",
     dotColor: "bg-teal-500",
     highlights: [
       "Engineered end-to-end full-stack features for an AI-driven recruitment platform using React.js/Next.js and Node.js/Express, independently owning modules such as AI Interview, Assessments, Candidate Management, and Reporting Dashboards from design through production deployment",
@@ -41,6 +43,7 @@ export const experienceData = [
       "Built and scaled a Playwright-based browser automation framework with rule-based verification, automating daily test runs, failure analysis, and detailed reporting to significantly reduce manual QA effort",
       "Managed containerized deployments (Docker, Docker Compose) on VPS infrastructure and resolved production incidents, ensuring reliable releases and minimal downtime across environments"
     ],
+    proof: { lor: LOR, letter: InternshipLetter },
     skills: ["React.js", "Next.js", "Node.js", "Express", "MongoDB", "Mongoose", "Gemini", "Playwright", "Docker", "JWT", "REST APIs", "Linux"]
   }
 ]

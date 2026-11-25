@@ -1,4 +1,7 @@
+import { useEffect, useRef, useState } from "react";
 import Resume from "../src/assets/files/SudipMandalResume.pdf";
+import Parallax from "./Parallax";
+import Watermark from "./Watermark";
 
 const contactCards = [
   {
@@ -35,26 +38,44 @@ const contactCards = [
 ];
 
 const Contact = () => {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.15 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div
       id="contact"
       className="relative pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 min-h-screen bg-gradient-to-br from-white via-blue-50/20 to-purple-50/20 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 overflow-hidden"
     >
       {/* Glow orbs */}
-      <div className="absolute top-40 left-10 w-72 h-72 bg-blue-300/20 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-60 right-10 w-80 h-80 bg-purple-300/20 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-40 left-1/3 w-80 h-80 bg-cyan-300/20 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-pink-300/20 dark:bg-pink-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Parallax speed={-0.16} mouseFactor={32} className="absolute top-40 left-10 w-72 h-72 bg-blue-300/20 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Parallax speed={0.18} mouseFactor={28} className="absolute top-60 right-10 w-80 h-80 bg-purple-300/20 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Parallax speed={0.08} mouseFactor={20} className="absolute bottom-40 left-1/3 w-80 h-80 bg-cyan-300/20 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Parallax speed={-0.08} mouseFactor={16} className="absolute top-1/4 right-1/4 w-64 h-64 bg-pink-300/20 dark:bg-pink-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Watermark text="CONTACT" speed={0.12} className="-bottom-8 -right-8" />
 
       {/* Heading */}
-      <div className="relative flex justify-center text-5xl sm:text-6xl md:text-8xl font-extenda40 mb-10 sm:mb-14 bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+      <div className={`relative z-10 flex justify-center text-5xl sm:text-6xl md:text-8xl font-extenda40 mb-10 sm:mb-14 bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 bg-clip-text text-transparent transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"}`}>
         ` CONTACT `
       </div>
 
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16">
+      <div ref={ref} className="relative z-10 max-w-5xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16">
         {/* Contact Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
-          {contactCards.map((card) => {
+          {contactCards.map((card, i) => {
             const isExternal = card.href && (card.href.startsWith("http") || card.href.startsWith("tel") || card.href.startsWith("mailto"));
             const Comp = card.href ? "a" : "div";
             return (
@@ -62,7 +83,8 @@ const Contact = () => {
               key={card.label}
               {...(card.href ? { href: card.href } : {})}
               {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className={`group flex flex-col backdrop-blur-md bg-white/60 dark:bg-gray-700/20 border border-white/30 dark:border-gray-600/10 rounded-3xl shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${card.glow}`}
+              className={`group flex flex-col backdrop-blur-md bg-white/60 dark:bg-gray-700/20 border border-white/30 dark:border-gray-600/10 rounded-3xl shadow-md transition-all duration-700 hover:-translate-y-1 hover:shadow-xl ${card.glow} ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: `${i * 120}ms` }}
             >
               <div className="flex flex-col items-center justify-center p-6 sm:p-8 lg:p-10 text-center">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 flex items-center justify-center rounded-2xl bg-white/70 dark:bg-gray-700/50 text-gray-500 dark:text-gray-400 mb-4 group-hover:scale-110 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] dark:group-hover:shadow-[0_0_20px_rgba(96,165,250,0.25)] group-hover:bg-blue-50/80 dark:group-hover:bg-gray-600/50 backdrop-blur-sm border border-white/30 dark:border-gray-600/20">
@@ -83,7 +105,7 @@ const Contact = () => {
         </div>
 
         {/* Social Links */}
-        <div className="flex justify-center items-center gap-4 sm:gap-6 mt-10 sm:mt-14">
+        <div className={`flex justify-center items-center gap-4 sm:gap-6 mt-10 sm:mt-14 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           {[
             {
               href: "https://www.linkedin.com/in/sudipmandal/",
@@ -122,7 +144,7 @@ const Contact = () => {
         </div>
 
         {/* Resume Download */}
-        <div className="flex justify-center mt-10 sm:mt-14">
+        <div className={`flex justify-center mt-10 sm:mt-14 transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}>
           <a
             href={Resume}
             download="SudipMandal_Resume.pdf"

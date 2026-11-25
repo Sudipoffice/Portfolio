@@ -1,130 +1,142 @@
 import { useEffect, useRef, useState } from "react";
 import { projectsData } from "./data";
+import Parallax from "./Parallax";
+import Watermark from "./Watermark";
+import PropTypes from "prop-types";
+
+const ArrowUpRight = ({ className = "w-3.5 h-3.5" }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M7 17L17 7M9 7h8v8" />
+  </svg>
+);
+
+ArrowUpRight.propTypes = { className: PropTypes.string };
+
+const GitHubIcon = ({ className = "w-3.5 h-3.5" }) => (
+  <svg className={className} fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+  </svg>
+);
+
+GitHubIcon.propTypes = { className: PropTypes.string };
+
+const shortDescription = (points) => {
+  const first = Array.isArray(points) && points.length > 0 ? points[0] : "";
+  if (first.length <= 160) return first;
+  const cut = first.slice(0, 160).replace(/\s+\S*$/, "");
+  return cut.length > 0 ? `${cut}…` : first.slice(0, 157) + "…";
+};
 
 const ProjectCard = ({ project, index, visible }) => {
-  const [currentImg, setCurrentImg] = useState(0);
-
-  useEffect(() => {
-    if (project.images && project.images.length > 1) {
-      const interval = setInterval(() => {
-        setCurrentImg(prev => (prev + 1) % project.images.length);
-      }, 4000);
-      return () => clearInterval(interval);
-    }
-  }, [project.images]);
+  const image = project.images && project.images.length > 0 ? project.images[0] : null;
+  const initials = project.title.split(/\s+/).map((w) => w[0]).join("").slice(0, 2);
 
   return (
-    <div
-      className={`group flex flex-col backdrop-blur-md bg-white/50 dark:bg-gray-700/20 border border-white/20 dark:border-gray-600/10 rounded-3xl overflow-hidden shadow-md transition-all duration-700 hover:shadow-[0_0_30px_rgba(139,92,246,0.25)] dark:hover:shadow-[0_0_30px_rgba(139,92,246,0.1)] hover:-translate-y-1.5 ${
+    <article
+      className={`group relative flex flex-col rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white/80 dark:bg-gray-900/70 backdrop-blur-md shadow-sm hover:shadow-2xl hover:shadow-violet-500/10 hover:-translate-y-1.5 transition-all duration-500 overflow-hidden ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
-      style={{ transitionDelay: `${index * 200}ms` }}
+      style={{ transitionDelay: `${index * 100}ms` }}
     >
-      {/* Glow behind accent bar */}
-      <div className={`absolute top-0 left-0 w-full h-6 bg-gradient-to-r opacity-0 group-hover:opacity-30 transition-opacity duration-500 blur-xl ${project.accent}`} />
-
-      {/* Accent bar */}
-      <div className={`relative h-1 w-full bg-gradient-to-r bg-[length:200%_100%] animate-shimmer ${project.accent}`} />
-
       {/* Image */}
-      <div className="relative h-48 sm:h-56 lg:h-60 overflow-hidden bg-gray-100 dark:bg-gray-800">
-        {project.images && project.images.length > 0 ? (
-          <>
-            <img
-              key={currentImg}
-              src={project.images[currentImg]}
-              alt={`${project.title} screenshot ${currentImg + 1}`}
-              loading="lazy"
-              className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-            />
-            {project.images.length > 1 && (
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                {project.images.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentImg(i)}
-                    className={`transition-all duration-300 ${
-                      i === currentImg
-                        ? "w-6 h-2 bg-white/90 rounded-full shadow-[0_0_8px_rgba(255,255,255,0.4)]"
-                        : "w-2 h-2 bg-white/40 rounded-full hover:bg-white/60"
-                    }`}
-                  />
-                ))}
-              </div>
-            )}
-          </>
+      <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-slate-100 to-violet-100/40 dark:from-slate-800 dark:to-slate-800">
+        {image ? (
+          <img
+            src={image}
+            alt={`${project.title} screenshot`}
+            loading="lazy"
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+          />
         ) : (
-          <div className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${project.accent}`}>
-            <svg className="w-12 h-12 sm:w-16 sm:h-16 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-            </svg>
+          <div className="absolute inset-0 grid place-items-center bg-gradient-to-br from-violet-500/15 to-fuchsia-500/15 dark:from-violet-400/10 dark:to-fuchsia-400/10">
+            <span className="font-extenda40 text-4xl text-violet-500/50 dark:text-violet-300/40">
+              {initials}
+            </span>
           </div>
         )}
+
+        {/* Top accent hairline */}
+        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-violet-500/60 via-fuchsia-400/40 to-transparent" />
+
+        {/* Hover reveal */}
+        <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-gradient-to-t from-black/75 via-black/35 to-transparent pt-16 pb-3.5 pl-4 pr-3 flex justify-end">
+          <a
+            href={project.liveUrl || project.githubUrl || "#"}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-white text-xs font-medium tracking-wide"
+          >
+            View Project
+            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        </div>
       </div>
 
-      {/* Content */}
-      <div className="p-5 sm:p-6 lg:p-7">
-        <div className="flex items-start justify-between gap-3 mb-3">
-          <div className="min-w-0">
-            <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 dark:text-gray-100 tracking-tight">
-              {project.title}
-            </h3>
-            <p className="text-xs sm:text-sm text-gray-400 dark:text-gray-500 mt-0.5">
-              {project.subtitle}
-            </p>
-          </div>
-          <div className="flex gap-2 flex-shrink-0 pt-0.5">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs px-3 py-1.5 rounded-xl bg-blue-500/80 hover:bg-blue-600 text-white font-medium transition-all duration-200 hover:-translate-y-0.5 shadow-sm hover:shadow-[0_0_14px_rgba(59,130,246,0.35)]"
-              >
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                Live
-              </a>
-            )}
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-[10px] sm:text-xs px-3 py-1.5 rounded-xl bg-white/70 dark:bg-gray-600/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-500/30 text-gray-600 dark:text-gray-300 font-medium transition-all duration-200 hover:-translate-y-0.5 hover:bg-white dark:hover:bg-gray-500/60 hover:shadow-[0_0_14px_rgba(107,114,128,0.2)]"
-              >
-                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                </svg>
-                Code
-              </a>
-            )}
-          </div>
+      {/* Body */}
+      <div className="flex flex-col flex-1 p-5 sm:p-6">
+        <div className="flex items-start justify-between gap-3 mb-2.5">
+          <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 leading-snug tracking-tight">
+            {project.title}
+          </h3>
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open ${project.title} live site`}
+              className="mt-1 text-slate-400 hover:text-violet-500 dark:hover:text-violet-300 transition-colors duration-300 flex-shrink-0"
+            >
+              <ArrowUpRight className="w-5 h-5" />
+            </a>
+          )}
         </div>
 
-        <ul className="space-y-1.5 mb-4 sm:mb-5">
-          {project.description.map((point, i) => (
-            <li key={i} className="text-[11px] sm:text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex gap-2.5">
-              <span className="text-violet-500 mt-0.5 flex-shrink-0 text-xs drop-shadow-[0_0_6px_rgba(139,92,246,0.4)]">▸</span>
-              <span>{point}</span>
-            </li>
-          ))}
-        </ul>
+        <p className="text-[13px] sm:text-sm text-slate-500 dark:text-slate-400 font-light leading-relaxed mb-4 flex-1">
+          {shortDescription(project.description)}
+        </p>
 
-        <div className="flex flex-wrap gap-1.5">
-          {project.tech.map((tech) => (
+        <div className="flex flex-wrap gap-1.5 mb-5">
+          {project.tech.map((t) => (
             <span
-              key={tech}
-              className="text-[9px] sm:text-[11px] px-2.5 py-1 rounded-full bg-white/70 dark:bg-gray-600/30 text-gray-600 dark:text-gray-400 font-medium border border-gray-200/40 dark:border-gray-500/20 backdrop-blur-sm hover:border-violet-300/40 dark:hover:border-violet-500/30 hover:shadow-[0_0_12px_rgba(139,92,246,0.2)] dark:hover:shadow-[0_0_10px_rgba(139,92,246,0.15)] transition-all duration-200"
+              key={t}
+              className="px-2.5 py-1 rounded-full text-[11px] font-medium text-violet-600 dark:text-violet-300 bg-violet-500/10 dark:bg-violet-400/10 border border-violet-500/20 dark:border-violet-400/20"
             >
-              {tech}
+              {t}
             </span>
           ))}
         </div>
+
+        <div className="flex items-center gap-4 border-t border-slate-200/70 dark:border-white/8 pt-4 mt-auto">
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-300 transition-colors duration-300"
+            >
+              Live <ArrowUpRight className="w-3 h-3" />
+            </a>
+          )}
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-300 transition-colors duration-300"
+            >
+              <GitHubIcon className="w-3.5 h-3.5" /> GitHub
+            </a>
+          )}
+        </div>
       </div>
-    </div>
+    </article>
   );
+};
+
+ProjectCard.propTypes = {
+  project: PropTypes.object,
+  index: PropTypes.number,
+  visible: PropTypes.bool,
 };
 
 const Projects = () => {
@@ -139,7 +151,7 @@ const Projects = () => {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -148,24 +160,31 @@ const Projects = () => {
   return (
     <div
       id="projects"
-      className="relative pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 via-violet-50/40 to-purple-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
+      className="relative pt-20 sm:pt-28 md:pt-36 pb-20 sm:pb-28 min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-violet-50/40 to-purple-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
     >
-      <div className="absolute inset-0 opacity-[0.06] dark:opacity-[0.04] pointer-events-none" style={{
+      {/* Ambient */}
+      <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.04] pointer-events-none" style={{
         backgroundImage: "radial-gradient(circle at 1px 1px, #8b5cf6 1px, transparent 0)",
-        backgroundSize: "36px 36px",
+        backgroundSize: "40px 40px",
       }} />
-      <div className="absolute top-20 -left-10 w-[28rem] h-[28rem] bg-violet-300/25 dark:bg-violet-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-40 -right-10 w-[32rem] h-[32rem] bg-purple-300/25 dark:bg-purple-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-80 h-80 bg-pink-300/25 dark:bg-pink-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute top-60 left-1/4 w-72 h-72 bg-cyan-300/25 dark:bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-20 left-1/3 w-80 h-80 bg-blue-300/25 dark:bg-blue-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <Parallax speed={-0.15} mouseFactor={28} className="absolute -top-10 -left-20 w-[26rem] h-[26rem] bg-violet-300/20 dark:bg-violet-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <Parallax speed={0.14} mouseFactor={22} className="absolute bottom-0 -right-20 w-[30rem] h-[30rem] bg-purple-300/20 dark:bg-purple-500/10 rounded-full blur-[150px] pointer-events-none" />
+      <Watermark text="PROJECTS" speed={0.14} className="-top-8 -right-10" />
 
-      <div className="flex justify-end text-5xl sm:text-6xl md:text-8xl font-extenda40 bg-gradient-to-r from-violet-500 to-purple-400 bg-clip-text text-transparent px-6 sm:px-12 md:px-16 mb-8 sm:mb-12">
-        [ PROJECTS ]
-      </div>
+      <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+        {/* Heading */}
+        <div
+          className={`flex justify-end mb-6 sm:mb-8 transition-all duration-700 ${
+            visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-6"
+          }`}
+        >
+          <h2 className="font-extenda40 text-right text-5xl sm:text-6xl md:text-8xl bg-gradient-to-r from-violet-600 via-purple-500 to-fuchsia-500 bg-clip-text text-transparent">
+            [ PROJECTS ]
+          </h2>
+        </div>
 
-      <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-7 lg:gap-8">
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7">
           {projectsData.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} visible={visible} />
           ))}

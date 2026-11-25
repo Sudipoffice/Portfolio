@@ -2,6 +2,126 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.35);
+  color: inherit;
+}
+
+@keyframes heroLineIn {
+  from {
+    opacity: 0;
+    transform: translateY(2.2rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hero-line {
+  opacity: 0;
+  animation: heroLineIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-line-1 { animation-delay: 0.15s; }
+.hero-line-2 { animation-delay: 0.32s; }
+.hero-line-3 { animation-delay: 0.5s; }
+.hero-line-4 { animation-delay: 0.72s; }
+.hero-line-5 { animation-delay: 0.9s; }
+
+@keyframes curtainUp {
+  from {
+    transform: translateY(0);
+    visibility: visible;
+  }
+  to {
+    transform: translateY(-100%);
+    visibility: hidden;
+  }
+}
+
+.curtain-up {
+  animation: curtainUp 0.8s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+@keyframes shimmerBar {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.shimmer-bar {
+  animation: shimmerBar 1.3s linear infinite;
+}
+
+@keyframes curtainWord {
+  0% {
+    opacity: 0;
+    transform: translateY(0.9rem) scale(0.97);
+  }
+  12% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  82% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-0.4rem) scale(1);
+  }
+}
+
+.curtain-word {
+  animation: curtainWord 0.6s ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-line {
+    animation: none;
+    opacity: 1;
+  }
+  .curtain-up {
+    animation: none;
+    visibility: hidden;
+  }
+  .shimmer-bar {
+    animation: none;
+  }
+  .curtain-word {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 @font-face {
     font-family: 'Extenda10';
     src: url('https://sudipoffice.github.io/portfolioImages/fonts/Extenda10.woff2') format('woff2');

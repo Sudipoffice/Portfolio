@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { skillsData } from "./data";
+import Parallax from "./Parallax";
+import Watermark from "./Watermark";
 
 const logoBase = "https://sudipoffice.github.io/portfolioImages/images/Portfolio/";
 const simpleBase = "https://cdn.jsdelivr.net/npm/simple-icons@13/icons/";
@@ -96,15 +98,16 @@ const Skills = () => {
       id="skills"
       className="relative pt-20 sm:pt-28 md:pt-36 pb-16 sm:pb-20 min-h-screen bg-gradient-to-br from-white via-emerald-50/30 to-teal-50/20 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 overflow-hidden"
     >
-      <div className="absolute top-20 right-10 w-72 h-72 bg-emerald-300/20 dark:bg-emerald-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-40 left-10 w-80 h-80 bg-teal-300/20 dark:bg-teal-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-cyan-300/20 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Parallax speed={-0.14} mouseFactor={30} className="absolute top-20 right-10 w-72 h-72 bg-emerald-300/20 dark:bg-emerald-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Parallax speed={0.16} mouseFactor={24} className="absolute bottom-40 left-10 w-80 h-80 bg-teal-300/20 dark:bg-teal-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Parallax speed={0.08} mouseFactor={18} className="absolute top-1/2 left-1/3 w-64 h-64 bg-cyan-300/20 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Watermark text="SKILLS" speed={0.1} className="-top-8 -left-10" />
 
-      <div className="flex justify-center text-5xl sm:text-6xl md:text-8xl font-extenda40 bg-gradient-to-r from-emerald-500 to-teal-400 bg-clip-text text-transparent mb-8 sm:mb-12">
+      <div className="relative z-10 flex justify-center text-5xl sm:text-6xl md:text-8xl font-extenda40 bg-gradient-to-r from-emerald-500 to-teal-400 bg-clip-text text-transparent mb-8 sm:mb-12">
         {'{ SKILLS }'}
       </div>
 
-      <div ref={ref} className="max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+      <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {skillsData.map((category, i) => (
             <SkillCard key={category.category} category={category} index={i} visible={visible} />

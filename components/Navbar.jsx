@@ -7,10 +7,11 @@ import { useLocation, Link } from 'react-router-dom'
 const sectionIds = ['home', 'about', 'skills', 'projects', 'contact'];
 
 const Navbar = ({theme}) => {
-  const [isDark, setIsDark] = theme
+  const [isDark] = theme
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const [progress, setProgress] = useState(0)
   const location = useLocation()
 
   const navLinks = [
@@ -43,6 +44,10 @@ const Navbar = ({theme}) => {
     const handleScroll = () => {
       if (!ticking) {
         requestAnimationFrame(() => {
+          const doc = document.documentElement;
+          const max = doc.scrollHeight - window.innerHeight;
+          setProgress(max > 0 ? Math.min(1, window.scrollY / max) : 0);
+
           let current = 'home';
           let minDist = Infinity;
           sectionIds.forEach((id) => {
@@ -78,6 +83,7 @@ const Navbar = ({theme}) => {
             : 'bg-transparent'
         }`}
       >
+        <div className="absolute bottom-0 left-0 h-[2px] z-10 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" style={{ width: `${progress * 100}%` }} />
         <div className="relative group">
           <div className={`absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm ${isScrolled ? '' : 'opacity-30'}`} />
           <div className={`relative p-2 sm:p-2.5 rounded-full transition-all duration-500 ${
@@ -120,6 +126,7 @@ const Navbar = ({theme}) => {
               : 'bg-transparent'
         }`}
       >
+        <div className="absolute bottom-0 left-0 h-[2px] z-10 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" style={{ width: `${progress * 100}%` }} />
         <div className="flex items-center gap-3">
           <div className={`p-1.5 my-1.5 rounded-full transition-all ${
             isScrolled || isMenuOpen

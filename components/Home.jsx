@@ -1,8 +1,40 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Resume from "../src/assets/files/SudipMandalResume.pdf"
+import Parallax from "./Parallax"
+
+const greetings = ["Welcome", "Namaste", "Hi There", "Hello"];
 
 const Home = () => {
   const [loaded, setLoaded] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const [reveal, setReveal] = useState(false);
+  const [showCurtain, setShowCurtain] = useState(true);
+  const [greetingIndex, setGreetingIndex] = useState(0);
+
+  useEffect(() => {
+    let cancelled = false;
+    const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+    const minDelay = new Promise((resolve) => setTimeout(resolve, 1800));
+    const hardCap = new Promise((resolve) => setTimeout(resolve, 3200));
+    Promise.race([Promise.all([fontsReady, minDelay]), hardCap]).then(() => {
+      if (!cancelled) setReveal(true);
+    });
+    return () => { cancelled = true; };
+  }, []);
+
+  useEffect(() => {
+    if (!reveal) return;
+    const t = setTimeout(() => setShowCurtain(false), 850);
+    return () => clearTimeout(t);
+  }, [reveal]);
+
+  useEffect(() => {
+    if (!showCurtain) return;
+    const t = setInterval(() => {
+      setGreetingIndex((i) => (i + 1) % greetings.length);
+    }, 600);
+    return () => clearInterval(t);
+  }, [showCurtain]);
 
   return (
     <div
@@ -10,24 +42,45 @@ const Home = () => {
       className="relative min-h-screen bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 overflow-hidden flex flex-col sm:flex-row-reverse justify-around pb-32 sm:pb-0"
     >
       {/* Glow orbs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-blue-300/20 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-20 right-10 w-80 h-80 bg-purple-300/20 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-300/20 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Parallax mouseFactor={30} className="absolute top-20 left-10 w-72 h-72 bg-blue-300/20 dark:bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Parallax mouseFactor={24} className="absolute bottom-20 right-10 w-80 h-80 bg-purple-300/20 dark:bg-purple-400/5 rounded-full blur-3xl pointer-events-none" />
+      <Parallax mouseFactor={36} className="absolute top-1/2 left-1/2 -ml-48 -mt-48 w-96 h-96 bg-cyan-300/20 dark:bg-cyan-400/5 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Curtain loader */}
+      {showCurtain && (
+        <div
+          className={`absolute inset-0 z-50 flex flex-col items-center justify-center gap-6 sm:gap-8 bg-gradient-to-br from-white via-blue-50/30 to-purple-50/20 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 ${
+            reveal ? "curtain-up" : ""
+          }`}
+        >
+          <p key={greetingIndex} className="curtain-word">
+            <span className="font-extenda30 bg-gradient-to-r from-blue-700 via-purple-500 to-blue-400 bg-clip-text text-transparent text-4xl sm:text-6xl extraTight">
+              {greetings[greetingIndex]}
+            </span>
+          </p>
+          <div className="w-44 sm:w-56 h-1 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+            <div className="h-full w-full rounded-full bg-gradient-to-r from-blue-500 to-cyan-400 shimmer-bar" />
+          </div>
+        </div>
+      )}
 
       {/* Image part */}
       <div onContextMenu={(e) => e.preventDefault()} className="flex flex-row justify-center sm:justify-evenly pt-0 sm:pt-12 md:pt-12 lg:pt-0 xl:pt-0 w-screen sm:w-5/6 md:w-4/6 lg:w-5/6 xl:w-3/6">
         <div className="relative h-6/7 w-4/6 px-4 sm:px-0 flex justify-end items-end select-none z-0">
           <div className={`absolute inset-0 rounded-2xl bg-gray-200 dark:bg-gray-700 ${loaded ? "opacity-0" : "opacity-100"} transition-opacity duration-500`} />
-          <img
-            src="https://sudipoffice.github.io/portfolioImages/images/Portfolio/sudipBW.webp"
-            alt="Sudip Mandal"
-            loading="eager"
-            fetchPriority="high"
-            width="400"
-            height="500"
-            onLoad={() => setLoaded(true)}
-            className={`w-full h-auto object-contain transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
-          />
+          {!failed && (
+            <img
+              src="https://sudipoffice.github.io/portfolioImages/images/Portfolio/sudipBW.webp"
+              alt="Sudip Mandal"
+              loading="eager"
+              fetchPriority="high"
+              width="400"
+              height="500"
+              onLoad={() => setLoaded(true)}
+              onError={() => { setFailed(true); setLoaded(true); }}
+              className={`w-full h-auto object-contain transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}
+            />
+          )}
         </div>
 
         <div className="flex flex-col justify-end items-center py-2 sm:py-4 md:py-4 lg:py-20 xl:py-44 gap-3 sm:gap-4">
@@ -81,33 +134,33 @@ const Home = () => {
       <div className="relative z-10 flex flex-col w-screen sm:w-3/6 h-fit sm:h-40 md:h-48 lg:h-48 xl:h-fit mt-4 sm:mt-64 md:mt-64 lg:mt-80 xl:mt-48 mx-0 sm:mx-4 md:mx-8 lg:mx-4 xl:mx-8 justify-center items-center">
         <div className="">
           <div className="flex flex-row justify-around w-5/6">
-            <p className="font-extenda20 text-gray-500 dark:text-gray-400 text-5xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl extraTight">
+            <p className={`${reveal ? "hero-line hero-line-1" : ""} font-extenda20 text-gray-500 dark:text-gray-400 text-5xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl extraTight`}>
               HI THERE
             </p>
-            <p className="font-extenda50 text-gray-800 dark:text-gray-300 text-5xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl extraTight">
-              I'M
+            <p className={`${reveal ? "hero-line hero-line-1" : ""} font-extenda50 text-gray-800 dark:text-gray-300 text-5xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl extraTight`}>
+              I&apos;M
             </p>
           </div>
-          <p className="font-extenda30 bg-gradient-to-r from-blue-700 to-blue-400 bg-clip-text text-transparent text-7xl sm:text-6xl md:text-9xl lg:text-8xl xl:text-9xl extraTight">
+          <p className={`${reveal ? "hero-line hero-line-2" : ""} font-extenda30 bg-gradient-to-r from-blue-700 to-blue-400 bg-clip-text text-transparent text-7xl sm:text-6xl md:text-9xl lg:text-8xl xl:text-9xl extraTight`}>
             &lt;SUDIP MANDAL&gt;
           </p>
           <div className="flex flex-row justify-around">
-            <p className="font-extenda10 text-black dark:text-gray-100 text-7xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl flex items-end extraTight z-10">
+            <p className={`${reveal ? "hero-line hero-line-3" : ""} font-extenda10 text-black dark:text-gray-100 text-7xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl flex items-end extraTight z-10`}>
               A
             </p>
-            <p className="font-extenda90 text-gray-600 dark:text-gray-500 sm:text-gray-600 text-5xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl extraTight z-10">
+            <p className={`${reveal ? "hero-line hero-line-3" : ""} font-extenda90 text-gray-600 dark:text-gray-500 sm:text-gray-600 text-5xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl extraTight z-10`}>
               FULL STACK <br /> DEVELOPER
             </p>
           </div>
         </div>
-        <div className="justify-center items-center text-center font-light text-sm sm:text-sm md:text-base lg:text-xl w-5/6 sm:w-6/6 md:w-4/6 my-2 sm:my-8 text-gray-500 dark:text-gray-400">
-          Nice to meet you. Welcome to my portfolio. Let's connect and discuss how we can make an impact together!
+        <div className={`${reveal ? "hero-line hero-line-4" : ""} justify-center items-center text-center font-light text-sm sm:text-sm md:text-base lg:text-xl w-5/6 sm:w-6/6 md:w-4/6 my-2 sm:my-8 text-gray-500 dark:text-gray-400`}>
+          Nice to meet you. Welcome to my portfolio. Let&apos;s connect and discuss how we can make an impact together!
         </div>
 
         <a
           href={Resume}
           target="_blank"
-          className="group relative inline-flex items-center gap-2 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full overflow-hidden text-xs sm:text-sm font-medium transition-all duration-500 hover:-translate-y-0.5"
+          className={`${reveal ? "hero-line hero-line-5" : ""} group relative inline-flex items-center gap-2 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full overflow-hidden text-xs sm:text-sm font-medium transition-all duration-500 hover:-translate-y-0.5`}
         >
           <span className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-blue-400 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           <span className="absolute inset-0 rounded-full border border-blue-500/40 group-hover:border-blue-400/60 transition-colors duration-500" />
