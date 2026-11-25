@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Required: workbox-build / serialize-javascript (vite-plugin-pwa) need Node >= 20
+# and rely on the global Web Crypto API.
+[build.environment]
+  NODE_VERSION = "20"
