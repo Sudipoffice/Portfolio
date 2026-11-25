@@ -66,16 +66,16 @@ const Home = () => {
 
       {/* Image part */}
       <div onContextMenu={(e) => e.preventDefault()} className="flex flex-row justify-center sm:justify-evenly pt-0 sm:pt-12 md:pt-12 lg:pt-0 xl:pt-0 w-screen sm:w-5/6 md:w-4/6 lg:w-5/6 xl:w-3/6">
-        <div className="relative h-6/7 w-4/6 px-4 sm:px-0 flex justify-end items-end select-none z-0">
+        <div className="relative w-4/6 px-4 sm:px-0 flex justify-end items-end select-none z-0">
           <div className={`absolute inset-0 rounded-2xl bg-gray-200 dark:bg-gray-700 ${loaded ? "opacity-0" : "opacity-100"} transition-opacity duration-500`} />
           {!failed && (
             <img
-              src="https://sudipoffice.github.io/portfolioImages/images/Portfolio/sudipBW.webp"
+              src="/images/portfolio/sudipBW.webp"
               alt="Sudip Mandal"
               loading="eager"
               fetchPriority="high"
-              width="400"
-              height="500"
+              width="640"
+              height="1113"
               onLoad={() => setLoaded(true)}
               onError={() => { setFailed(true); setLoaded(true); }}
               className={`w-full h-auto object-contain transition-opacity duration-500 ${loaded ? "opacity-100" : "opacity-0"}`}

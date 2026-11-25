@@ -1,20 +1,32 @@
-/* Hide the default cursor */
-* {
+/* Hide the default cursor only once the custom cursor is active (fine pointers) */
+.custom-cursor-enabled,
+.custom-cursor-enabled * {
   cursor: none;
-  
 }
 
 .custom-cursor {
   position: fixed;
-  width: 20px; 
+  top: 0;
+  left: 0;
+  width: 20px;
   height: 20px;
   border-radius: 50%;
-  /* background-color: rgba(0, 0, 0, 0.5); */
-  pointer-events:none;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease, background-color 0.2s;
+  pointer-events: none;
+  will-change: transform;
+  transition: background-color 0.2s;
   z-index: 9999;
-} 
+}
+
+/* Custom cursor is meaningless on touch/coarse pointers */
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none;
+  }
+  .custom-cursor-enabled,
+  .custom-cursor-enabled * {
+    cursor: auto;
+  }
+}
 
 .extraTight {
   line-height: 0.73;

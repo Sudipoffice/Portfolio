@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import logoLight from '../src/assets/images/logoLight.webp'
 import logoDark from '../src/assets/images/logoDark.webp'
 import DarkLightMode from './DarkLightMode'
@@ -163,7 +164,7 @@ const Navbar = ({theme}) => {
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <div className="fixed inset-0 z-40 flex sm:hidden">
-          <div className="absolute inset-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-2xl" />
+          <div className="absolute inset-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-2xl" onClick={() => setIsMenuOpen(false)} />
           <nav className="relative w-full h-full flex flex-col items-center justify-center gap-6 p-8">
             {navLinks.map(({ path, label, activeLabel, id, color }) => (
               <Link
@@ -182,6 +183,10 @@ const Navbar = ({theme}) => {
       )}
     </>
   )
+}
+
+Navbar.propTypes = {
+  theme: PropTypes.array.isRequired,
 }
 
 export default Navbar

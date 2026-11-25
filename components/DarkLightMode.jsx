@@ -1,3 +1,5 @@
+import PropTypes from "prop-types"
+
 const DarkLightMode = ({theme}) => {
   const [isDark, setIsDark] = theme
 
@@ -45,6 +47,10 @@ const DarkLightMode = ({theme}) => {
       </label>
     </div>
   );
+}
+
+DarkLightMode.propTypes = {
+  theme: PropTypes.array.isRequired,
 }
 
 export default DarkLightMode

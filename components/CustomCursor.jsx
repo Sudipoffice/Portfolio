@@ -4,16 +4,20 @@ const CustomCursor = () => {
   const cursorRef = useRef(null);
 
   useEffect(() => {
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
+    document.body.classList.add('custom-cursor-enabled');
+
     const onMouseMove = (e) => {
       if (cursorRef.current) {
-        cursorRef.current.style.left = `${e.clientX}px`;
-        cursorRef.current.style.top = `${e.clientY}px`;
+        cursorRef.current.style.transform = `translate3d(${e.clientX - 10}px, ${e.clientY - 10}px, 0)`;
       }
     };
     document.addEventListener('mousemove', onMouseMove);
 
     return () => {
       document.removeEventListener('mousemove', onMouseMove);
+      document.body.classList.remove('custom-cursor-enabled');
     };
   }, []);
 

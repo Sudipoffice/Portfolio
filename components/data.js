@@ -8,7 +8,7 @@ export const aboutData = {
   name: "Sudip Mandal",
   role: "Full Stack Developer",
   location: "Kolkata, India",
-  profileImage: "https://sudipoffice.github.io/portfolioImages/images/Portfolio/sudipBW.webp",
+  profileImage: "/images/portfolio/sudip-avatar.webp",
   bio: [
     "Full Stack Developer specializing in the MERN stack with experience in building production-grade web applications. Currently engineering AI-driven recruitment technology at Banao Technologies — owning full-stack modules from design through deployment, including AI Interview systems, automated candidate assessment, and LLM-powered reporting dashboards.",
     "Proficient across the entire development spectrum: designing React/Next.js interfaces with TypeScript, architecting RESTful APIs with Node.js/Express and MongoDB/Mongoose, implementing JWT-based authentication with role-based access control, and integrating LLMs (Gemini) into real product workflows. Also experienced in browser automation with Playwright, containerized deployments with Docker, and VPS infrastructure management."
@@ -94,11 +94,11 @@ export const projectsData = [
     liveUrl: "https://career-copilotai.netlify.app/",
     githubUrl: "https://github.com/Sudipoffice/Career-Copilot.git",
     images: [
-      "https://sudipoffice.github.io/portfolioImages/images/Career-Copilot/Homepage.webp",
-      "https://sudipoffice.github.io/portfolioImages/images/Career-Copilot/Dashboard.webp",
-      "https://sudipoffice.github.io/portfolioImages/images/Career-Copilot/Resume.webp",
-      "https://sudipoffice.github.io/portfolioImages/images/Career-Copilot/SkillGapAnalysis.webp",
-      "https://sudipoffice.github.io/portfolioImages/images/Career-Copilot/StudyPlan.webp"
+      "/images/career-copilot/Homepage.webp",
+      "/images/career-copilot/Dashboard.webp",
+      "/images/career-copilot/Resume.webp",
+      "/images/career-copilot/SkillGapAnalysis.webp",
+      "/images/career-copilot/StudyPlan.webp"
     ],
     accent: "from-indigo-600 to-purple-600"
   },
@@ -126,10 +126,10 @@ export const projectsData = [
     tech: ["React 18", "React Router", "Three.js", "React Three Fiber", "GSAP", "Tailwind CSS", "Vite"],
     liveUrl: "https://newsflash-web.netlify.app/",
     images: [
-      "https://sudipoffice.github.io/portfolioImages/images/NewsFlash/Home.webp",
-      "https://sudipoffice.github.io/portfolioImages/images/NewsFlash/TopStories.webp",
-      "https://sudipoffice.github.io/portfolioImages/images/NewsFlash/Categories.webp",
-      "https://sudipoffice.github.io/portfolioImages/images/NewsFlash/Videos.webp"
+      "/images/newsflash/Home.webp",
+      "/images/newsflash/TopStories.webp",
+      "/images/newsflash/Categories.webp",
+      "/images/newsflash/Videos.webp"
     ],
     accent: "from-cyan-500 to-blue-600"
   },
@@ -144,10 +144,10 @@ export const projectsData = [
     tech: ["React", "Vite", "Tailwind CSS", "AI Integration"],
     liveUrl: "https://easyeats-ai.netlify.app/",
     images: [
-      "https://sudipoffice.github.io/portfolioImages/images/EasyEats-AI/Home.webp",
-      "https://sudipoffice.github.io/portfolioImages/images/EasyEats-AI/Trending.webp",
-      "https://sudipoffice.github.io/portfolioImages/images/EasyEats-AI/AIChef.webp",
-      "https://sudipoffice.github.io/portfolioImages/images/EasyEats-AI/Ingredients.webp"
+      "/images/easyeats/Home.webp",
+      "/images/easyeats/Trending.webp",
+      "/images/easyeats/AIChef.webp",
+      "/images/easyeats/Ingredients.webp"
     ],
     accent: "from-green-500 to-emerald-600"
   }

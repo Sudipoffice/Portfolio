@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import PropTypes from "prop-types";
 import { skillsData } from "./data";
 import Parallax from "./Parallax";
 import Watermark from "./Watermark";
@@ -74,6 +75,16 @@ const SkillCard = ({ category, index, visible }) => (
     </div>
   </div>
 );
+
+SkillCard.propTypes = {
+  category: PropTypes.shape({
+    category: PropTypes.string,
+    accent: PropTypes.string,
+    skills: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
+  index: PropTypes.number.isRequired,
+  visible: PropTypes.bool.isRequired,
+};
 
 const Skills = () => {
   const [visible, setVisible] = useState(false);

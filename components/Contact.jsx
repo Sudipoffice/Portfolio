@@ -76,7 +76,7 @@ const Contact = () => {
         {/* Contact Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 lg:gap-6">
           {contactCards.map((card, i) => {
-            const isExternal = card.href && (card.href.startsWith("http") || card.href.startsWith("tel") || card.href.startsWith("mailto"));
+            const isExternal = card.href && card.href.startsWith("http");
             const Comp = card.href ? "a" : "div";
             return (
             <Comp

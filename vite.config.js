@@ -29,9 +29,21 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,webp,png,svg,woff2,woff,pdf}'],
+        globIgnores: ['**/images/**', '**/LOR-*.png', '**/InternshipLetter-*.png'],
         cleanupOutdatedCaches: true,
         navigateFallback: '/index.html',
         runtimeCaching: [
+          {
+            urlPattern: /\/images\/.*\.(webp|png|jpe?g|gif)$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'local-images-v1',
+              expiration: {
+                maxEntries: 60,
+                maxAgeSeconds: 30 * 24 * 60 * 60,
+              },
+            },
+          },
           {
             urlPattern: /^https:\/\/sudipoffice\.github\.io\/.*\.(webp|png|jpe?g|svg|gif)(\?.*)?$/,
             handler: 'CacheFirst',
