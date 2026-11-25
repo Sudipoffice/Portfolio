@@ -22,109 +22,162 @@ GitHubIcon.propTypes = { className: PropTypes.string };
 
 const shortDescription = (points) => {
   const first = Array.isArray(points) && points.length > 0 ? points[0] : "";
-  if (first.length <= 160) return first;
-  const cut = first.slice(0, 160).replace(/\s+\S*$/, "");
-  return cut.length > 0 ? `${cut}…` : first.slice(0, 157) + "…";
+  if (first.length <= 170) return first;
+  const cut = first.slice(0, 170).replace(/\s+\S*$/, "");
+  return cut.length > 0 ? `${cut}…` : first.slice(0, 167) + "…";
 };
 
-const ProjectCard = ({ project, index, visible }) => {
-  const image = project.images && project.images.length > 0 ? project.images[0] : null;
-  const initials = project.title.split(/\s+/).map((w) => w[0]).join("").slice(0, 2);
+const TECH_LIMIT = { feature: 6, tall: 4, wide: 4, compact: 3 };
+
+// Top row (Textile 2/3 + Career 1/3) swaps widths on hover.
+// Second row keeps the existing 2:1:1 (NewsFlash 6 / QA 3 / EasyEats 3) split.
+const TOP_ROW = [5, 4];
+const BOTTOM_ROW = [2, 1, 3];
+
+const ProjectCard = ({ project, index, visible, className = "", onMouseEnter }) => {
+  const {
+    title,
+    subtitle,
+    description,
+    tech,
+    liveUrl,
+    githubUrl,
+    images,
+    accent,
+    badge,
+    comingSoon,
+    layout = "compact",
+  } = project;
+
+  const image = images && images.length > 0 ? images[0] : null;
+  const initials = title
+    .split(/\s+/)
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+  const isLarge = layout === "feature" || layout === "tall" || layout === "wide";
+  const techLimit = TECH_LIMIT[layout] || 3;
+
+  const backdrop = (
+    <>
+      {image ? (
+        <img
+          src={image}
+          alt={`${title} screenshot`}
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+        />
+      ) : (
+        <div className={`absolute inset-0 bg-gradient-to-br ${accent}`}>
+          <div
+            className="absolute inset-0 opacity-30"
+            style={{
+              backgroundImage: "radial-gradient(circle at 1px 1px, #fff 1px, transparent 0)",
+              backgroundSize: "22px 22px",
+            }}
+          />
+          <span className="absolute right-5 top-3 font-extenda40 text-6xl text-white/20 select-none">
+            {initials}
+          </span>
+          {comingSoon && (
+            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 px-3 py-1.5 text-[10px] sm:text-xs font-medium uppercase tracking-widest text-white/90 border border-white/20 backdrop-blur-sm">
+              Preview coming soon
+            </span>
+          )}
+        </div>
+      )}
+
+      {/* readability scrim */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/45 to-black/10" />
+    </>
+  );
 
   return (
     <article
-      className={`group relative flex flex-col rounded-2xl border border-slate-200/80 dark:border-white/10 bg-white/80 dark:bg-gray-900/70 backdrop-blur-md shadow-sm hover:shadow-2xl hover:shadow-violet-500/10 hover:-translate-y-1.5 transition-all duration-500 overflow-hidden ${
+      onMouseEnter={onMouseEnter}
+      className={`group relative flex h-full min-w-0 flex-col justify-end overflow-hidden rounded-3xl border border-white/15 dark:border-white/10 shadow-lg transition-all duration-500 ease-out hover:-translate-y-1 hover:shadow-2xl ${className} ${
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
       }`}
-      style={{ transitionDelay: `${index * 100}ms` }}
+      style={{ transitionDelay: `${index * 90}ms` }}
     >
-      {/* Image */}
-      <div className="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-slate-100 to-violet-100/40 dark:from-slate-800 dark:to-slate-800">
-        {image ? (
-          <img
-            src={image}
-            alt={`${project.title} screenshot`}
-            loading="lazy"
-            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-          />
-        ) : (
-          <div className="absolute inset-0 grid place-items-center bg-gradient-to-br from-violet-500/15 to-fuchsia-500/15 dark:from-violet-400/10 dark:to-fuchsia-400/10">
-            <span className="font-extenda40 text-4xl text-violet-500/50 dark:text-violet-300/40">
-              {initials}
-            </span>
-          </div>
+      {liveUrl ? (
+        <a
+          href={liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Open ${title} live project`}
+          className="absolute inset-0 z-0"
+        >
+          {backdrop}
+        </a>
+      ) : (
+        <div className="absolute inset-0 z-0">{backdrop}</div>
+      )}
+
+      <div className="pointer-events-none relative z-10 flex flex-col p-4 sm:p-5 lg:p-6">
+        {badge && (
+          <span
+            className={`mb-2 inline-flex w-fit items-center gap-1.5 rounded-full border px-2.5 py-1 text-[9px] sm:text-[10px] font-semibold uppercase tracking-wider text-white backdrop-blur-sm ${
+              comingSoon
+                ? "border-amber-300/40 bg-amber-400/20"
+                : "border-white/25 bg-white/15"
+            }`}
+          >
+            {!comingSoon && <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(52,211,153,0.9)]" />}
+            {badge}
+          </span>
         )}
 
-        {/* Top accent hairline */}
-        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-violet-500/60 via-fuchsia-400/40 to-transparent" />
-
-        {/* Hover reveal */}
-        <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-gradient-to-t from-black/75 via-black/35 to-transparent pt-16 pb-3.5 pl-4 pr-3 flex justify-end">
-          <a
-            href={project.liveUrl || project.githubUrl || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-white text-xs font-medium tracking-wide"
-          >
-            View Project
-            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-        </div>
-      </div>
-
-      {/* Body */}
-      <div className="flex flex-col flex-1 p-5 sm:p-6">
-        <div className="flex items-start justify-between gap-3 mb-2.5">
-          <h3 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100 leading-snug tracking-tight">
-            {project.title}
-          </h3>
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Open ${project.title} live site`}
-              className="mt-1 text-slate-400 hover:text-violet-500 dark:hover:text-violet-300 transition-colors duration-300 flex-shrink-0"
-            >
-              <ArrowUpRight className="w-5 h-5" />
-            </a>
-          )}
-        </div>
-
-        <p className="text-[13px] sm:text-sm text-slate-500 dark:text-slate-400 font-light leading-relaxed mb-4 flex-1">
-          {shortDescription(project.description)}
+        <h3 className={`font-bold text-white leading-tight tracking-tight ${isLarge ? "text-xl sm:text-2xl lg:text-3xl" : "text-lg sm:text-xl"}`}>
+          {title}
+        </h3>
+        <p className={`text-white/80 ${isLarge ? "text-xs sm:text-sm" : "text-[11px] sm:text-xs"}`}>
+          {subtitle}
         </p>
 
-        <div className="flex flex-wrap gap-1.5 mb-5">
-          {project.tech.map((t) => (
+        {isLarge && (
+          <p className="mt-2 max-w-lg text-xs sm:text-sm font-light leading-relaxed text-white/70 line-clamp-2">
+            {shortDescription(description)}
+          </p>
+        )}
+
+        <div className="mt-3 flex flex-wrap gap-1.5">
+          {tech.slice(0, techLimit).map((t) => (
             <span
               key={t}
-              className="px-2.5 py-1 rounded-full text-[11px] font-medium text-violet-600 dark:text-violet-300 bg-violet-500/10 dark:bg-violet-400/10 border border-violet-500/20 dark:border-violet-400/20"
+              className="rounded-full border border-white/15 bg-white/10 px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-white/85 backdrop-blur-sm"
             >
               {t}
             </span>
           ))}
+          {tech.length > techLimit && (
+            <span className="rounded-full border border-white/10 bg-black/20 px-2 py-0.5 text-[10px] sm:text-[11px] font-medium text-white/70">
+              +{tech.length - techLimit}
+            </span>
+          )}
         </div>
 
-        <div className="flex items-center gap-4 border-t border-slate-200/70 dark:border-white/8 pt-4 mt-auto">
-          {project.liveUrl && (
+        <div className="mt-3 flex items-center gap-4">
+          {liveUrl && (
             <a
-              href={project.liveUrl}
+              href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-300 transition-colors duration-300"
+              className="pointer-events-auto inline-flex items-center gap-1 text-xs sm:text-sm font-medium text-white/90 hover:text-white transition-colors"
             >
-              Live <ArrowUpRight className="w-3 h-3" />
+              {comingSoon ? "Preview" : "Live"} <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           )}
-          {project.githubUrl && (
+          {githubUrl && (
             <a
-              href={project.githubUrl}
+              href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-300 transition-colors duration-300"
+              className="pointer-events-auto inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-white/80 hover:text-white transition-colors"
             >
-              <GitHubIcon className="w-3.5 h-3.5" /> GitHub
+              <GitHubIcon className="w-3.5 h-3.5" /> Code
             </a>
           )}
         </div>
@@ -137,11 +190,15 @@ ProjectCard.propTypes = {
   project: PropTypes.object,
   index: PropTypes.number,
   visible: PropTypes.bool,
+  className: PropTypes.string,
+  onMouseEnter: PropTypes.func,
 };
 
 const Projects = () => {
   const [visible, setVisible] = useState(false);
+  const [hovered, setHovered] = useState(null);
   const ref = useRef(null);
+  const byId = (id) => projectsData.find((p) => p.id === id);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -151,7 +208,7 @@ const Projects = () => {
           observer.unobserve(entry.target);
         }
       },
-      { threshold: 0.08 }
+      { threshold: 0.05 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -163,15 +220,18 @@ const Projects = () => {
       className="relative pt-20 sm:pt-28 md:pt-36 pb-20 sm:pb-28 min-h-screen overflow-hidden bg-gradient-to-br from-slate-50 via-violet-50/40 to-purple-50/30 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900"
     >
       {/* Ambient */}
-      <div className="absolute inset-0 opacity-[0.05] dark:opacity-[0.04] pointer-events-none" style={{
-        backgroundImage: "radial-gradient(circle at 1px 1px, #8b5cf6 1px, transparent 0)",
-        backgroundSize: "40px 40px",
-      }} />
+      <div
+        className="absolute inset-0 opacity-[0.05] dark:opacity-[0.04] pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle at 1px 1px, #8b5cf6 1px, transparent 0)",
+          backgroundSize: "40px 40px",
+        }}
+      />
       <Parallax speed={-0.15} mouseFactor={28} className="absolute -top-10 -left-20 w-[26rem] h-[26rem] bg-violet-300/20 dark:bg-violet-500/10 rounded-full blur-[140px] pointer-events-none" />
       <Parallax speed={0.14} mouseFactor={22} className="absolute bottom-0 -right-20 w-[30rem] h-[30rem] bg-purple-300/20 dark:bg-purple-500/10 rounded-full blur-[150px] pointer-events-none" />
       <Watermark text="PROJECTS" speed={0.14} className="-top-8 -right-10" />
 
-      <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-4 sm:px-8 md:px-12 lg:px-16 xl:px-20">
+      <div ref={ref} className="relative z-10 w-4/5 mx-auto">
         {/* Heading */}
         <div
           className={`flex justify-end mb-6 sm:mb-8 transition-all duration-700 ${
@@ -183,11 +243,45 @@ const Projects = () => {
           </h2>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-7">
-          {projectsData.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} visible={visible} />
-          ))}
+        {/* Bento: top row swaps 2/3 <-> 1/3 on hover, bottom row stays 2:1:1 */}
+        <div className="flex flex-col gap-4 sm:gap-5">
+          <div
+            className="flex flex-col md:flex-row gap-4 sm:gap-5"
+            onMouseLeave={() => setHovered(null)}
+          >
+            {TOP_ROW.map((id, i) => {
+              const project = byId(id);
+              if (!project) return null;
+              const isTextile = id === 5;
+              const wide = isTextile ? hovered !== 4 : hovered === 4;
+              return (
+                <ProjectCard
+                  key={id}
+                  project={project}
+                  index={i}
+                  visible={visible}
+                  onMouseEnter={() => setHovered(id)}
+                  className={`min-h-[320px] sm:min-h-[400px] ${wide ? "md:flex-[2]" : "md:flex-[1]"}`}
+                />
+              );
+            })}
+          </div>
+
+          <div className="flex flex-col md:flex-row gap-4 sm:gap-5">
+            {BOTTOM_ROW.map((id, i) => {
+              const project = byId(id);
+              if (!project) return null;
+              return (
+                <ProjectCard
+                  key={id}
+                  project={project}
+                  index={i + TOP_ROW.length}
+                  visible={visible}
+                  className={`min-h-[240px] ${i === 0 ? "md:flex-[2]" : "md:flex-[1]"}`}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>

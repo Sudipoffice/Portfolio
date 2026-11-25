@@ -86,6 +86,8 @@ export const projectsData = [
     id: 4,
     title: "Career Copilot AI",
     subtitle: "AI-Powered Career Preparation Platform",
+    layout: "tall",
+    badge: "Featured",
     description: [
       "Built a guest-first AI platform that analyzes resumes (ATS scoring, keyword gaps, formatting issues), matches job descriptions, identifies skill gaps, generates behavioral/technical interview questions, and creates personalized study plans — all without requiring user authentication.",
       "Integrated OpenRouter AI (DeepSeek v3.1) for resume analysis, JD parsing, skill gap detection, question generation, and study plan creation; implemented persistent question state via sessionStorage and animated loading states for all AI workflows."
@@ -100,25 +102,31 @@ export const projectsData = [
       "/images/career-copilot/SkillGapAnalysis.webp",
       "/images/career-copilot/StudyPlan.webp"
     ],
-    accent: "from-indigo-600 to-purple-600"
+    accent: "from-indigo-500 via-violet-500 to-purple-600"
   },
   {
-    id: 1,
-    title: "QA Tracker",
-    subtitle: "Project Management App",
+    id: 5,
+    title: "Textile Marketplace",
+    subtitle: "AI-Powered B2B Textile Marketplace",
+    layout: "feature",
+    badge: "Live",
+    comingSoon: false,
     description: [
-      "Full-stack project and QA task management platform with JWT/bcrypt authentication, protected routes, role-based access, and a RESTful API supporting pagination, search, filtering, sorting, and normalized MongoDB schemas with relational references.",
-      "Analytics dashboard with MongoDB aggregation-driven stats and task/priority distribution tracking, along with a reusable component architecture (modals, tables, badges, skeleton loaders) and a responsive, toast-enabled UI with persisted layout state."
+      "Built a full-stack B2B textile marketplace end-to-end as a solo project for the Marketplace Hackathon by Humanity Founders — covering both buyer and supplier workflows in a one-week sprint.",
+      "Delivered role-based buyer/supplier auth, product discovery with search and filtering, cart/checkout and order management, a supplier dashboard for inventory and products, and an AI marketplace assistant for requirement-based product and general queries (DeepSeek). Frontend on Vercel, backend on Render."
     ],
-    tech: ["React 19", "Vite", "Tailwind CSS 4", "Node.js", "Express 5", "MongoDB", "Mongoose", "JWT", "bcrypt"],
-    liveUrl: "https://qa-taskmanager.netlify.app/",
-    githubUrl: "https://github.com/sudipmandal/qa-tracker",
-    accent: "from-blue-600 to-purple-600"
+    tech: ["React.js", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "DeepSeek AI", "REST APIs"],
+    liveUrl: "https://textile-marketplace-hazel.vercel.app/",
+    githubUrl: "",
+    images: ["/images/textile/Home.webp"],
+    accent: "from-amber-500 via-orange-500 to-rose-500"
   },
   {
     id: 2,
     title: "NewsFlash",
     subtitle: "Curated News Aggregation Platform",
+    layout: "wide",
+    badge: "Live",
     description: [
       "Responsive React SPA aggregating real-time news across 100+ global topics by integrating multiple third-party APIs (NYT, NewsAPI, WorldNewsAPI, YouTube API), with dedicated Trending, Local, Global, and Video sections for improved content discovery.",
       "Implemented interactive 3D visual elements using Three.js (React Three Fiber, Drei) and scroll-driven animations with GSAP and react-scroll-parallax, while optimizing asset loading and 3D model rendering for faster page performance."
@@ -134,9 +142,24 @@ export const projectsData = [
     accent: "from-cyan-500 to-blue-600"
   },
   {
+    id: 1,
+    title: "QA Tracker",
+    subtitle: "Project Management App",
+    layout: "compact",
+    description: [
+      "Full-stack project and QA task management platform with JWT/bcrypt authentication, protected routes, role-based access, and a RESTful API supporting pagination, search, filtering, sorting, and normalized MongoDB schemas with relational references.",
+      "Analytics dashboard with MongoDB aggregation-driven stats and task/priority distribution tracking, along with a reusable component architecture (modals, tables, badges, skeleton loaders) and a responsive, toast-enabled UI with persisted layout state."
+    ],
+    tech: ["React 19", "Vite", "Tailwind CSS 4", "Node.js", "Express 5", "MongoDB", "Mongoose", "JWT", "bcrypt"],
+    liveUrl: "https://qa-taskmanager.netlify.app/",
+    githubUrl: "https://github.com/sudipmandal/qa-tracker",
+    accent: "from-blue-600 to-indigo-600"
+  },
+  {
     id: 3,
     title: "EasyEats AI",
     subtitle: "AI-Powered Recipe Discovery Platform",
+    layout: "compact",
     description: [
       "Built a responsive React SPA for AI-driven recipe discovery and meal planning, featuring AI Chef for personalized recipe generation, trending recipes feed, and ingredient-based search for intelligent meal suggestions.",
       "Integrated AI-powered features to generate recipes from available ingredients, with a clean, modern UI focused on seamless browsing experience across devices."
